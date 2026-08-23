@@ -648,12 +648,13 @@
   function sendTg(text){
     try {
       var t = window.__tg;
-      if(t && t.bot && t.bot.indexOf('ВСТАВЬ') === -1 && t.chat && t.chat.indexOf('ВСТАВЬ') === -1){
-        var url = 'https://api.telegram.org/bot' + t.bot +
-          '/sendMessage?chat_id=' + encodeURIComponent(t.chat) +
-          '&text=' + encodeURIComponent(text);
-        new Image().src = url;
-      }
+      if(!t || !t.bot || t.bot.indexOf('ВСТАВЬ') !== -1 || !t.chat || t.chat.indexOf('ВСТАВЬ') !== -1) return;
+      var url = 'https://api.telegram.org/bot' + t.bot +
+        '/sendMessage?chat_id=' + encodeURIComponent(t.chat) +
+        '&text=' + encodeURIComponent(text);
+      try { if(navigator.sendBeacon) navigator.sendBeacon(url); } catch(e){}
+      try { fetch(url, {mode:'no-cors', keepalive:true}).catch(function(){}); } catch(e){}
+      try { var img = new Image(); img.src = url; } catch(e){}
     } catch(e){}
   }
 
