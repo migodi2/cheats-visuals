@@ -1,0 +1,67 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAuthed() {
+      return request.auth != null && request.auth.token != null;
+    }
+
+    function isAdmin() {
+      return isAuthed()
+        && exists(/databases/$(database)/documents/meta/admins)
+        && get(/databases/$(database)/documents/meta/admins).data.uids.hasAny([request.auth.uid]);
+    }
+
+    match /meta/banned {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /meta/auditLog/entries/{entryId} {
+      allow read: if true;
+      allow create: if isAuthed()
+        && request.resource.data.keys().hasOnly(['action','target','by','ts','fp']);
+      allow update, delete: if false;
+    }
+
+    match /meta/admins {
+      allow read: if isAuthed();
+      allow write: if false;
+    }
+
+    // --- Публичные данные сайта (комменты, счётчики, запросы) ---
+    match /comments/{cardId}/items/{cid} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasOnly(['name','text','ts'])
+        && request.resource.data.name is string
+        && request.resource.data.text is string
+        && request.resource.data.name.size() <= 24
+        && request.resource.data.text.size() <= 280;
+      allow update, delete: if false;
+    }
+
+    match /counters/{cardId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /requests/{reqId} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasOnly(['name','text','ts'])
+        && request.resource.data.name is string
+        && request.resource.data.text is string
+        && request.resource.data.name.size() <= 24
+        && request.resource.data.text.size() <= 280;
+      allow update: if true;
+      allow delete: if true;
+    }
+
+    // --- Карточки, добавленные через админку (пишет только админ с токеном) ---
+    match /cards/{cardId} {
+      allow read: if true;
+      allow create: if request.resource.data.token == 'migodi-admin-2026';
+      allow update: if request.resource.data.token == 'migodi-admin-2026';
+      allow delete: if resource.data.token == 'migodi-admin-2026';
+    }
+  }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Админка — Cracks for Minecraft</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body{ background:var(--bg,#050508); color:var(--text,#e0f0f8); font-family:inherit; }
+  .admin-wrap{ max-width:760px; margin:40px auto; padding:0 18px; }
+  .admin-wrap h1{ font-size:22px; font-weight:800; margin-bottom:18px; }
+  .admin-wrap h2{ font-size:16px; font-weight:800; margin:24px 0 12px; }
+  #gate input{ background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); color:var(--text); padding:10px 12px; border-radius:10px; font-family:inherit; font-size:14px; }
+  #gate button{ background:linear-gradient(135deg,var(--accent,#00e5ff),#e09520); border:none; color:#050508; font-weight:800; padding:10px 18px; border-radius:10px; cursor:pointer; font-family:inherit; }
+  #gateErr{ color:#ff6b6b; font-size:12px; margin-top:8px; min-height:14px; }
+  .req-item{ background:var(--bg-2,#0c0c14); border:1px solid var(--card-border,rgba(255,255,255,0.08)); border-radius:14px; padding:14px; margin-bottom:10px; }
+  .req-item .meta{ font-size:11px; color:var(--text-dim,#556870); margin-bottom:6px; }
+  .req-item .txt{ font-size:14px; line-height:1.5; word-break:break-word; }
+  .req-item .acts{ margin-top:10px; display:flex; gap:8px; }
+  .req-item .acts button{ border:none; border-radius:8px; padding:7px 14px; font-weight:800; font-size:12px; cursor:pointer; font-family:inherit; }
+  .btn-ok{ background:linear-gradient(135deg,#00ffa0,#00cc88); color:#050508; }
+  .btn-del{ background:rgba(255,80,80,0.18); color:#ff8080; }
+  .empty{ font-size:13px; color:var(--text-dim); }
+  #cardForm{ background:var(--bg-2,#0c0c14); border:1px solid var(--card-border,rgba(255,255,255,0.08)); border-radius:14px; padding:16px; margin-top:14px; }
+  #cardForm label{ display:block; font-size:11px; color:var(--text-dim); margin:10px 0 4px; text-transform:uppercase; letter-spacing:.5px; }
+  #cardForm input, #cardForm select{ width:100%; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); color:var(--text); padding:10px 12px; border-radius:10px; font-family:inherit; font-size:13px; box-sizing:border-box; }
+  #cardForm .row{ display:flex; gap:10px; }
+  #cardForm .row > div{ flex:1; }
+  #cardForm .ferr{ color:#ff6b6b; font-size:12px; min-height:14px; margin-top:8px; }
+  #cardForm .fbtns{ display:flex; gap:8px; margin-top:14px; }
+  #cardForm .fbtns button{ border:none; border-radius:10px; padding:10px 18px; font-weight:800; font-size:13px; cursor:pointer; font-family:inherit; }
+  .f-save{ background:linear-gradient(135deg,var(--accent,#00e5ff),#e09520); color:#050508; }
+  .f-cancel{ background:rgba(255,255,255,0.08); color:var(--text); }
+</style>
+</head>
+<body>
+  <div class="admin-wrap">
+    <h1>Админка сайта</h1>
+
+    <div id="gate">
+      <input id="passInput" type="password" placeholder="пароль админа" autocomplete="off">
+      <button id="passBtn" type="button">Войти</button>
+      <div id="gateErr"></div>
+    </div>
+
+    <div id="panel" hidden>
+      <h2>Заявки «попросить чит»</h2>
+      <div id="reqList"><div class="empty">загрузка…</div></div>
+
+      <div id="cardForm" hidden>
+        <h2 style="margin-top:0">Создать карточку</h2>
+        <div class="row">
+          <div>
+            <label>Раздел</label>
+            <select id="cfCat">
+              <option value="cheats">Читы</option>
+              <option value="visuals">Визуалы</option>
+              <option value="respacks">Ресурспаки</option>
+            </select>
+          </div>
+          <div>
+            <label>Версия (напр. 1.21.4)</label>
+            <input id="cfVer" type="text" placeholder="1.21.4">
+          </div>
+        </div>
+        <label>Название</label>
+        <input id="cfTitle" type="text" maxlength="40" placeholder="Название">
+        <label>Ссылка на скачивание</label>
+        <input id="cfLink" type="text" placeholder="https://…">
+        <label>Telegram (необязательно)</label>
+        <input id="cfTg" type="text" placeholder="https://t.me/…">
+        <label>Текст установки</label>
+        <input id="cfInstall" type="text" maxlength="120" placeholder="Установка: закинуть .jar в папку mods.">
+        <div class="ferr" id="cfErr"></div>
+        <div class="fbtns">
+          <button class="f-save" id="cfSave" type="button">Сохранить и одобрить</button>
+          <button class="f-cancel" id="cfCancel" type="button">Отмена</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js?v=2"></script>
+  <script src="admin.js?v=2"></script>
+</body>
+</html>
