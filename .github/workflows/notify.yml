@@ -1,0 +1,46 @@
+name: Notify Telegram
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install firebase@10.12.2
+      - name: Check Firestore and notify
+        run: |
+          node << 'NODE'
+          const { initializeApp } = require('firebase/app');
+          const { getFirestore, collection, getDocs, doc, updateDoc } = require('firebase/firestore');
+          const BOT = "8938674191:AAFuSCZ7el9yrIMoLb0_5V1obqZ4vo1KT9g";
+          const CHAT = "8224647555";
+          initializeApp({
+            apiKey: "AIzaSyBasLD6wAvy-vyubJO3OL-0P6aewRtvG1A",
+            authDomain: "cracksforminecraftmigodi2.firebaseapp.com",
+            projectId: "cracksforminecraftmigodi2",
+          });
+          const db = getFirestore();
+          (async () => {
+            const snap = await getDocs(collection(db, "requests"));
+            const now = Date.now();
+            const thresh = now - 6*60*1000;
+            for (const d of snap.docs) {
+              const v = d.data();
+              if (v.notified) { console.log("Skip notified", d.id); continue; }
+              if ((v.ts||0) < thresh) { console.log("Skip old", d.id); continue; }
+              const msg = `🔔 Новая заявка (бэкап)\nОт: ${v.name||'гость'}\n${v.text||''}`;
+              console.log("Sending", d.id, msg);
+              await fetch(`https://api.telegram.org/bot${BOT}/sendMessage?chat_id=${CHAT}&text=${encodeURIComponent(msg)}`);
+              await updateDoc(doc(db, "requests", d.id), { notified: true });
+              console.log("Marked", d.id);
+              await new Promise(r=>setTimeout(r,1000));
+            }
+          })();
+          NODE
