@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cracksforminecraftmigodi2.web.app/sitemap.xml
+Sitemap: https://migodi2.github.io/cheats-visuals/sitemap.xml
