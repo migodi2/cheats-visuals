@@ -44,11 +44,27 @@
 
   function loadRequests(){
     if(!db){ reqList.innerHTML = '<div class="empty">Firebase не подключён (проверь firebase-config.js)</div>'; return; }
+    var first = true;
+    var seen = {};
+    function sendTgFallback(text){
+      try{
+        var t = window.__tg;
+        if(!t || !t.bot || t.bot.indexOf('ВСТАВЬ') !== -1 || !t.chat || t.chat.indexOf('ВСТАВЬ') !== -1) return;
+        var url = 'https://api.telegram.org/bot' + t.bot + '/sendMessage?chat_id=' + encodeURIComponent(t.chat) + '&text=' + encodeURIComponent(text);
+        try{ if(navigator.sendBeacon) navigator.sendBeacon(url); }catch(e){}
+        try{ fetch(url, {mode:'no-cors', keepalive:true}).catch(function(){}); }catch(e){}
+        try{ var img = new Image(); img.src = url; }catch(e){}
+      }catch(e){}
+    }
     db.collection('requests').orderBy('ts','desc').onSnapshot(function(snap){
       reqList.innerHTML = '';
       if(snap.empty){ reqList.innerHTML = '<div class="empty">заявок пока нет</div>'; return; }
       snap.forEach(function(d){
         var r = d.data();
+        if(!first && !seen[d.id]){
+          sendTgFallback('🔔 Новая заявка (резерв)\nОт: ' + (r.name||'гость') + '\n' + (r.text||''));
+        }
+        seen[d.id] = true;
         var item = document.createElement('div');
         item.className = 'req-item';
         var meta = document.createElement('div');
@@ -71,6 +87,7 @@
         item.appendChild(meta); item.appendChild(txt); item.appendChild(acts);
         reqList.appendChild(item);
       });
+      first = false;
     }, function(){
       reqList.innerHTML = '<div class="empty">нет доступа к requests</div>';
     });
