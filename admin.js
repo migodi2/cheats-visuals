@@ -2,8 +2,8 @@
    ADMIN PANEL: requests list + approve to cards
    ============================================ */
 (function(){
-  var ADMIN_PASS = 'migodi';            // пароль для входа (смени при желании)
-  var ADMIN_TOKEN = 'migodi-admin-2026'; // совпадает с токеном в firestore.rules
+  var ADMIN_PASS = 'M1god1_S3cur3_2026!';            // смени на свой сложный пароль
+  var ADMIN_TOKEN = 'f9Kv2pLx_84QwZtY7mR3sA1'; // совпадает с токеном в firestore.rules — не показывай никому
 
   var db = null;
   try {
@@ -51,9 +51,7 @@
         var t = window.__tg;
         if(!t || !t.bot || t.bot.indexOf('ВСТАВЬ') !== -1 || !t.chat || t.chat.indexOf('ВСТАВЬ') !== -1) return;
         var url = 'https://api.telegram.org/bot' + t.bot + '/sendMessage?chat_id=' + encodeURIComponent(t.chat) + '&text=' + encodeURIComponent(text);
-        try{ if(navigator.sendBeacon) navigator.sendBeacon(url); }catch(e){}
-        try{ fetch(url, {mode:'no-cors', keepalive:true}).catch(function(){}); }catch(e){}
-        try{ var img = new Image(); img.src = url; }catch(e){}
+        fetch(url, {mode:'no-cors', keepalive:true}).catch(function(){});
       }catch(e){}
     }
     db.collection('requests').orderBy('ts','desc').onSnapshot(function(snap){

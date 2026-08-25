@@ -59,9 +59,9 @@ service cloud.firestore {
     // --- Карточки, добавленные через админку (пишет только админ с токеном) ---
     match /cards/{cardId} {
       allow read: if true;
-      allow create: if request.resource.data.token == 'migodi-admin-2026';
-      allow update: if request.resource.data.token == 'migodi-admin-2026';
-      allow delete: if resource.data.token == 'migodi-admin-2026';
+      allow create: if request.resource.data.token == 'f9Kv2pLx_84QwZtY7mR3sA1';
+      allow update: if request.resource.data.token == 'f9Kv2pLx_84QwZtY7mR3sA1';
+      allow delete: if resource.data.token == 'f9Kv2pLx_84QwZtY7mR3sA1';
     }
   }
 }
