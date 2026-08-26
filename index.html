@@ -110,6 +110,7 @@
 
 <div class="wrap">
   <div class="top-right">
+    <a class="donate-btn" id="donateBtn" href="https://boosty.to/migodi/donate" target="_blank" rel="noopener">донат</a>
     <a class="support-btn" id="supportBtn" href="https://t.me/Mig0di" target="_blank" rel="noopener">support</a>
     <button class="support-btn" id="reqOpenBtn" type="button">попросить чит</button>
     <button class="lang-switch" id="langSwitch" type="button" aria-label="Switch language">RU / EN</button>
@@ -122,6 +123,7 @@
     <button class="tab-btn active" data-tab="cheats" data-i18n="tab_cheats"></button>
     <button class="tab-btn" data-tab="visuals" data-i18n="tab_visuals"></button>
     <button class="tab-btn" data-tab="respacks" data-i18n="tab_respacks"></button>
+    <button class="tab-btn" data-tab="mods" data-i18n="tab_mods"></button>
     <button class="tab-btn" data-tab="updates" data-i18n="tab_updates"></button>
   </nav>
   </div>
@@ -404,9 +406,56 @@
     </div>
   </section>
 
+  <section id="mods" class="tab-panel">
+    <h2 class="section-title" data-i18n="tab_mods"></h2>
+    <div class="ver-filter" data-grid="modsGrid">
+      <button class="ver-btn active" data-ver="all">Все</button>
+      <button class="ver-btn" data-ver="1.21.4">1.21.4</button>
+      <button class="ver-btn" data-ver="1.21.11">1.21.11</button>
+    </div>
+    <div class="grid" id="modsGrid">
+      <div class="card" data-ver="1.21.4">
+        <h3>Fabric API</h3>
+        <div class="card-footer">
+          <span class="version-pill">1.21.4</span>
+          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/fabric-api-1.21.4.jar" download data-i18n="dl"></a>
+        </div>
+        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
+      </div>
+      <div class="card" data-ver="1.21.11">
+        <h3>Fabric API</h3>
+        <div class="card-footer">
+          <span class="version-pill">1.21.11</span>
+          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/fabric-api-1.21.11.jar" download data-i18n="dl"></a>
+        </div>
+        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
+      </div>
+      <div class="card" data-ver="1.21.4">
+        <h3>Sodium Fabric</h3>
+        <div class="card-footer">
+          <span class="version-pill">1.21.4</span>
+          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/sodium-fabric-1.21.4.jar" download data-i18n="dl"></a>
+        </div>
+        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
+      </div>
+      <div class="card" data-ver="1.21.11">
+        <h3>Sodium Fabric</h3>
+        <div class="card-footer">
+          <span class="version-pill">1.21.11</span>
+          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/sodium-fabric-1.21.11.jar" download data-i18n="dl"></a>
+        </div>
+        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
+      </div>
+    </div>
+  </section>
+
   <section id="updates" class="tab-panel">
     <h2 class="section-title" data-i18n="tab_updates"></h2>
     <div class="updates-list">
+      <div class="update-item">
+        <div class="update-date">26.08.2026</div>
+        <div class="update-body"><strong>Обновление:</strong> Добавлена вкладка Mods с Fabric API и Sodium Fabric (версии 1.21.4 и 1.21.11), кнопка доната (Boosty), заголовок теперь белый с глубоким свечением, переходы тем стали плавнее.</div>
+      </div>
       <div class="update-item">
         <div class="update-date">23.08.2026</div>
         <div class="update-body"><strong>Обновление:</strong> Добавлены читы Pouch Client 1.21.4 и Liminar Client 1.21.4, два новых PvP ресурс-пака и превью для них, исправлены ссылки скачивания.</div>
