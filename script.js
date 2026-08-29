@@ -30,14 +30,15 @@
 
   const translations = {
     ru: {
-      tab_cheats: 'Cheats',
-      tab_respacks: 'Resource Packs',
-      tab_visuals: 'Visuals',
-      tab_configs: 'Configs',
-      tab_updates: 'Updates',
-      tab_mods: 'Mods',
+      tab_cheats: 'Читы',
+      tab_visuals: 'Визуалы',
+      tab_mods: 'Моды',
+      tab_respacks: 'Ресурспаки',
+      tab_updates: 'Обновления',
       cheats_title: 'Читы для клиентов',
       visuals_title: 'Визуалы',
+      mods_title: 'Моды',
+      respacks_title: 'Ресурспаки',
       dl: 'Скачать',
       beta_note: 'release 1.0',
       disclaimer: 'Мы не несём ответственности. Все материалы скачиваются из других исходников.',
@@ -60,13 +61,14 @@
     },
     en: {
       tab_cheats: 'Cheats',
-      tab_respacks: 'Resource packs',
       tab_visuals: 'Visuals',
-      tab_configs: 'Configs',
-      tab_updates: 'Updates',
       tab_mods: 'Mods',
+      tab_respacks: 'Resource Packs',
+      tab_updates: 'Updates',
       cheats_title: 'Cheats for clients',
       visuals_title: 'Visuals',
+      mods_title: 'Mods',
+      respacks_title: 'Resource Packs',
       dl: 'Download',
       beta_note: 'release 1.0',
       disclaimer: 'We are not responsible. All materials are downloaded from other sources.',
@@ -113,10 +115,16 @@
     let cur = { x:0, y:0, l:0, s:1 };
     let tgt = { x:0, y:0, l:0, s:1 };
     let running = false;
+    var glow = document.createElement('div');
+    glow.style.cssText = 'position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s ease;z-index:1;overflow:hidden;';
+    var glowDot = document.createElement('div');
+    glowDot.style.cssText = 'position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,180,50,0.4) 0%,rgba(255,120,50,0.18) 35%,transparent 70%);transform:translate(-50%,-50%);pointer-events:none;filter:blur(25px);';
+    glow.appendChild(glowDot);
+    card.appendChild(glow);
     function lerp(a, b, t){ return a + (b - a) * t; }
     function animate(){
       ['x','y','l','s'].forEach(function(k){
-        cur[k] = lerp(cur[k], tgt[k], 0.15);
+        cur[k] = lerp(cur[k], tgt[k], 0.12);
       });
       const settled =
         Math.abs(cur.x - tgt.x) < 0.05 &&
@@ -142,16 +150,22 @@
     });
     card.addEventListener('mousemove', (e)=>{
       const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width;
-      const y = (e.clientY - r.top) / r.height;
-      tgt.x = (x - 0.5) * 16;
-      tgt.y = (0.5 - y) * 16;
-      tgt.l = -14;
-      tgt.s = 1.04;
+      const mx = e.clientX - r.left;
+      const my = e.clientY - r.top;
+      const x = mx / r.width;
+      const y = my / r.height;
+      tgt.x = (x - 0.5) * 18;
+      tgt.y = (0.5 - y) * 18;
+      tgt.l = -16;
+      tgt.s = 1.05;
+      glow.style.opacity = '1';
+      glowDot.style.left = mx + 'px';
+      glowDot.style.top = my + 'px';
       start();
     });
     card.addEventListener('mouseleave', ()=>{
       tgt.x = 0; tgt.y = 0; tgt.l = 0; tgt.s = 1;
+      glow.style.opacity = '0';
       start();
     });
   });
@@ -160,7 +174,7 @@
 
   const buttons = document.querySelectorAll('.tab-btn');
   const panels = document.querySelectorAll('.tab-panel');
-  const OUT_MS = 180;
+  const OUT_MS = 220;
 
   (function(){
     document.querySelectorAll('.ver-filter').forEach(function(bar){
@@ -182,24 +196,54 @@
     });
   })();
 
+  function animateCardsOut(panel){
+    const panelCards = panel.querySelectorAll('.card');
+    const dirs = [
+      {x:-120,y:-80,r:-25,s:0.5},
+      {x:120,y:-60,r:20,s:0.6},
+      {x:-80,y:100,r:30,s:0.4},
+      {x:100,y:80,r:-20,s:0.5},
+      {x:0,y:-120,r:15,s:0.55},
+      {x:-140,y:0,r:-30,s:0.45},
+      {x:140,y:20,r:25,s:0.5},
+    ];
+    panelCards.forEach((c, i)=>{
+      const d = dirs[i % dirs.length];
+      c.style.transition = 'opacity .25s ease, transform .3s cubic-bezier(.55,.06,.68,.19), filter .25s ease';
+      c.style.opacity = '0';
+      c.style.transform = `translateX(${d.x}px) translateY(${d.y}px) rotate(${d.r}deg) scale(${d.s})`;
+      c.style.filter = 'brightness(2) blur(3px)';
+    });
+  }
+
   function animateCardsIn(panel){
     const panelCards = panel.querySelectorAll('.card');
+    const inDirs = [
+      {x:60,y:90,r:12},
+      {x:-50,y:80,r:-15},
+      {x:70,y:-70,r:18},
+      {x:-80,y:-60,r:-10},
+      {x:40,y:100,r:8},
+      {x:-60,y:70,r:-20},
+      {x:90,y:-50,r:14},
+    ];
     panelCards.forEach((c, i)=>{
+      const d = inDirs[i % inDirs.length];
       c.style.opacity = '0';
-      c.style.transform = 'translateY(60px) scale(0.8) rotateX(15deg)';
-      c.style.filter = 'brightness(0.3)';
+      c.style.transform = `translateX(${d.x}px) translateY(${d.y}px) rotate(${d.r}deg) scale(0.6)`;
+      c.style.filter = 'brightness(0.2) blur(4px)';
       setTimeout(()=>{
-        c.style.transition = 'opacity .5s ease, transform .55s cubic-bezier(.23,1,.32,1), filter .4s ease';
+        c.style.transition = 'opacity .55s cubic-bezier(.23,1,.32,1), transform .6s cubic-bezier(.23,1,.32,1), filter .5s ease';
         c.style.opacity = '1';
-        c.style.transform = 'translateY(0) scale(1) rotateX(0deg)';
+        c.style.transform = 'translateY(0) rotate(0deg) scale(1)';
         c.style.filter = '';
         setTimeout(()=>{
           c.style.transition = '';
           c.style.transform = '';
           c.style.opacity = '';
           c.style.filter = '';
-        }, 600);
-      }, 40 + i * 45);
+        }, 650);
+      }, 30 + i * 40);
     });
   }
 
@@ -219,6 +263,7 @@
       nextRevealEls.forEach(function(el){ el.classList.remove('visible'); });
 
       if(current){
+        animateCardsOut(current);
         current.classList.remove('active');
         current.classList.add('leaving');
         setTimeout(()=>{
@@ -226,7 +271,7 @@
           next.classList.add('active');
           animateCardsIn(next);
           if(window.refreshScrollReveal) window.refreshScrollReveal();
-        }, OUT_MS);
+        }, 220);
       } else {
         next.classList.add('active');
         animateCardsIn(next);
@@ -240,13 +285,20 @@
 
   const cheatsSearch = document.getElementById('cheatsSearch');
   const cheatsGrid = document.getElementById('cheatsGrid');
+  const visualsGrid = document.getElementById('visualsGrid');
+  const modsGrid = document.getElementById('modsGrid');
+  const respacksGrid = document.getElementById('respacksGrid');
   if(cheatsSearch && cheatsGrid){
-    const cheatsCards = Array.from(cheatsGrid.querySelectorAll('.card'));
+    const allSearchCards = Array.from(cheatsGrid.querySelectorAll('.card')).concat(
+      visualsGrid ? Array.from(visualsGrid.querySelectorAll('.card')) : [],
+      modsGrid ? Array.from(modsGrid.querySelectorAll('.card')) : [],
+      respacksGrid ? Array.from(respacksGrid.querySelectorAll('.card')) : []
+    );
     let noResultsEl = null;
     cheatsSearch.addEventListener('input', ()=>{
       const q = cheatsSearch.value.trim().toLowerCase();
       let visible = 0;
-      cheatsCards.forEach(card=>{
+      allSearchCards.forEach(card=>{
         const title = card.querySelector('h3');
         const version = card.querySelector('.version-pill');
         const text = (title ? title.textContent : '') + ' ' + (version ? version.textContent : '');
@@ -444,12 +496,15 @@
 
     function renderProfile(){
       var acc = getAccount();
+      var regOpenBtn = document.getElementById('regOpenBtn');
       if(!acc){
         if(cardName) cardName.textContent = t('guest_name');
+        if(regOpenBtn) regOpenBtn.textContent = currentLang === 'ru' ? 'войти' : 'login';
         renderAvatar();
         return;
       }
       if(cardName) cardName.textContent = acc.username;
+      if(regOpenBtn) regOpenBtn.textContent = currentLang === 'ru' ? 'профиль' : 'profile';
       var now = Date.now();
       if(visitsEl) visitsEl.textContent = acc.visits || 1;
       if(daysEl) daysEl.textContent = daysBetween(acc.created, now);
@@ -599,6 +654,15 @@
     if(regOverlay) regOverlay.addEventListener('click', function(e){ if(e.target === regOverlay) closeReg(); });
     if(regUsername) regUsername.addEventListener('keydown', function(e){ if(e.key === 'Enter') submitReg(); });
     if(regAnswer) regAnswer.addEventListener('keydown', function(e){ if(e.key === 'Enter') submitReg(); });
+
+    var regOpenBtn = document.getElementById('regOpenBtn');
+    if(regOpenBtn) regOpenBtn.addEventListener('click', function(){
+      if(getAccount()){
+        openCard();
+      } else {
+        openReg(false);
+      }
+    });
 
     window.__refreshRegText = function(){
       if(regOverlay && regOverlay.classList.contains('open')){
@@ -836,3 +900,4 @@
     }
   });
 })();
+

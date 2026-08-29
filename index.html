@@ -1,720 +1,1075 @@
-﻿<!DOCTYPE html>
-<!-- saved from url=(0134)file:///C:/Users/mihai/OneDrive/%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B/Default%20Project/Cracks%20for%20Minecraft.html -->
-<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>cheats&visuals</title>
-<meta name="description" content="Бесплатные читы и визуалы для Minecraft — Zenith, Expensive, PulseVisuals, NightVisuals и другие. Ресурспаки, скачивание без регистрации, поддержка в Telegram.">
-<meta name="keywords" content="minecraft читы, minecraft визуалы, cracked clients, free cheats, ресурспаки, pulsevisuals, nightvisuals">
-<meta name="robots" content="index, follow">
-<meta name="google-site-verification" content="jY694jbvyoXQ2Rx0BkaCKJEKLSG2kCZiFUQ2LDe4wnU" />
-<meta name="yandex-verification" content="b504bf387d3234b1" />
-<meta property="og:title" content="cheats&visuals — читы и визуалы для Minecraft">
-<meta property="og:description" content="Бесплатные читы, визуалы и ресурспаки для Minecraft. Без вирусов и регистрации.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://migodi2.github.io/cheats-visuals/">
-<meta property="og:image" content="https://migodi2.github.io/cheats-visuals/avatar.jpg">
-<link rel="canonical" href="https://migodi2.github.io/cheats-visuals/">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-<link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
-<link rel="apple-touch-icon" href="favicon-48.png">
-<link rel="stylesheet" href="style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@400;600;800&family=Orbitron:wght@400;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+<title>Migodi — Моды и визуалы для Minecraft</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#060610;--surface:#0c0c1a;--card:#111125;--card-h:#18183a;
+--accent:#7c6aff;--accent2:#a78bfa;--green:#4ade80;--blue:#60a5fa;
+--txt:#eeeef5;--dim:#6a6a82;--faint:#1c1c30;--border:rgba(255,255,255,.04);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden}
+
+/* ===== INTRO ===== */
+#intro{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity 1.2s cubic-bezier(.4,0,.2,1),visibility 1.2s}
+#intro.out{opacity:0;visibility:hidden;pointer-events:none}
+#intro canvas{position:absolute;inset:0}
+.intro-inner{position:relative;z-index:1;text-align:center}
+
+.intro-title{font-size:clamp(36px,7vw,64px);font-weight:900;letter-spacing:.08em;background:linear-gradient(135deg,#fff 30%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;opacity:0;transform:translateY(24px);animation:fadeUp 1s .5s forwards}
+.intro-sub{font-size:13px;color:var(--dim);letter-spacing:.5em;text-transform:uppercase;margin-top:8px;opacity:0;animation:fadeUp .7s 1.1s forwards}
+.intro-line{width:160px;height:2px;background:var(--faint);border-radius:2px;margin:28px auto 0;overflow:hidden;opacity:0;animation:fadeUp .5s 1.4s forwards}
+.intro-line-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;animation:lineFill 1.8s 1.6s forwards cubic-bezier(.4,0,.2,1)}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@keyframes lineFill{to{width:100%}}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,56px);background:rgba(6,6,16,.88);backdrop-filter:blur(28px) saturate(1.4);border-bottom:1px solid var(--border);transform:translateY(-100%);animation:navIn .6s 3.4s forwards}
+@keyframes navIn{to{transform:translateY(0)}}
+.nav-logo{font-size:16px;font-weight:800;letter-spacing:.18em;background:linear-gradient(135deg,#fff,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav-center{display:flex;gap:6px}
+.nav-btn{padding:8px 18px;border-radius:20px;font-size:12px;font-weight:600;text-decoration:none;transition:.3s;cursor:pointer;border:1px solid transparent}
+.nb-donat{background:linear-gradient(135deg,rgba(255,100,100,.15),rgba(255,180,50,.15));color:#ff9966;border-color:rgba(255,150,80,.2)}
+
+.nb-donat:hover{background:linear-gradient(135deg,rgba(255,100,100,.25),rgba(255,180,50,.25));border-color:rgba(255,150,80,.4);box-shadow:0 0 20px rgba(255,150,80,.15)}
+.nb-support{background:rgba(255,255,255,.04);color:var(--txt);border-color:rgba(255,255,255,.08)}
+.nb-support:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15)}
+
+/* LIQUID NAV BUTTONS */
+.nav-liquid{
+  position:relative;padding:8px 22px;border-radius:100px;border:none;
+  font-family:inherit;font-size:12px;font-weight:600;color:#999;
+  cursor:pointer;overflow:hidden;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s;
+  background:transparent;text-decoration:none;display:inline-flex;align-items:center;
+  box-shadow:0 0 0 1px rgba(255,255,255,.06),0 4px 12px rgba(0,0,0,.3);
+}
+.nav-liquid:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 0 1px rgba(255,255,255,.1),0 2px 6px rgba(0,0,0,.2);
+}
+.nav-liquid:active{transform:scale(.97)}
+.nav-liquid-shader{
+  position:absolute;inset:0;border-radius:100px;overflow:hidden;
+  background:conic-gradient(from 45deg,
+    rgba(124,106,255,.5),rgba(167,139,250,.3),rgba(124,106,255,.15),
+    rgba(200,200,220,.7),rgba(124,106,255,.15),rgba(167,139,250,.3),rgba(124,106,255,.5));
+  background-size:200% 200%;
+  animation:liquidShift 5s ease-in-out infinite;
+  opacity:.85;
+}
+.nav-liquid:hover .nav-liquid-shader{animation-duration:2s;opacity:1}
+.nav-liquid-inner{
+  position:absolute;inset:1.5px;border-radius:100px;
+  background:linear-gradient(180deg,#18182a 0%,#0c0c1a 100%);
+  z-index:0;transition:box-shadow .15s;
+}
+.nav-liquid:active .nav-liquid-inner{
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.4);
+}
+.nav-liquid-text{
+  position:relative;z-index:1;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.nb-donat .nav-liquid-text{
+  background:linear-gradient(135deg,#ff9966,#ff5e62);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+/* ===== HERO ===== */
+.hero{min-height:auto;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 50px;position:relative}
+.hero-orb{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(124,106,255,.07),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;animation:orbPulse 6s ease-in-out infinite}
+@keyframes orbPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.7}50%{transform:translate(-50%,-50%) scale(1.15);opacity:1}}
+.hero-content{position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:20px;background:rgba(124,106,255,.06);border:1px solid rgba(124,106,255,.15);font-size:11.5px;color:var(--accent2);margin-bottom:28px;opacity:0;animation:fadeUp .6s 3.6s forwards}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:dotPulse 2s infinite}
+@keyframes dotPulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero h1{font-size:clamp(36px,7.5vw,76px);font-weight:900;line-height:1.04;margin-bottom:18px;opacity:0;animation:fadeUp .9s 3.7s forwards}
+.hero h1 .g{background:linear-gradient(135deg,#fff 20%,var(--accent2) 60%,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:clamp(14px,1.8vw,16px);color:var(--dim);max-width:440px;margin:0 auto 36px;line-height:1.7;opacity:0;animation:fadeUp .8s 3.9s forwards}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .8s 4.1s forwards}
+.btn{padding:11px 26px;border-radius:11px;font-size:13.5px;font-weight:600;border:none;cursor:pointer;transition:.3s cubic-bezier(.22,1,.36,1);text-decoration:none;display:inline-flex;align-items:center;gap:7px;font-family:inherit}
+.btn:active{transform:scale(.97)}
+.btn-fill{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 4px 24px rgba(124,106,255,.25)}
+.btn-fill:hover{transform:translateY(-2px);box-shadow:0 8px 36px rgba(124,106,255,.35)}
+.btn-ghost{background:rgba(255,255,255,.03);color:var(--txt);border:1px solid rgba(255,255,255,.07)}
+.btn-ghost:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+.btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* ===== SECTION ===== */
+.section{padding:80px clamp(20px,4vw,56px);max-width:1160px;margin:0 auto}
+.sec-head{text-align:center;margin-bottom:44px}
+.sec-head h2{font-size:clamp(24px,4vw,34px);font-weight:800;margin-bottom:8px}
+.sec-head p{color:var(--dim);font-size:14.5px}
+
+/* ===== FILTERS ===== */
+.filters{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;position:relative}
+.fbtn{
+  position:relative;padding:7px 18px;border-radius:20px;font-size:12.5px;font-weight:500;
+  border:1px solid var(--faint);background:transparent;color:var(--dim);cursor:pointer;
+  transition:color .3s,box-shadow .4s cubic-bezier(.34,1.56,.64,1),transform .3s cubic-bezier(.34,1.56,.64,1);
+  font-family:inherit;overflow:hidden;
+}
+.fbtn::before{
+  content:'';position:absolute;inset:0;border-radius:20px;opacity:0;pointer-events:none;
+  background:conic-gradient(from 45deg,rgba(124,106,255,.4),rgba(167,139,250,.2),rgba(200,200,220,.6),rgba(124,106,255,.2),rgba(167,139,250,.4));
+  background-size:200% 200%;animation:liquidShift 3s ease-in-out infinite;
+  transition:opacity .4s;
+}
+.fbtn::after{
+  content:'';position:absolute;inset:1px;border-radius:19px;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,#18182a 0%,#0c0c1a 100%);
+  transition:background .3s;
+}
+.fbtn:hover{border-color:rgba(255,255,255,.12);color:var(--txt);transform:translateY(-1px)}
+.fbtn.on{
+  color:var(--accent2);border-color:rgba(124,106,255,.35);
+  box-shadow:0 0 12px rgba(124,106,255,.15),0 0 4px rgba(124,106,255,.1);
+  transform:scale(1.05);
+}
+.fbtn.on::before{opacity:1}
+.fbtn.on::after{background:linear-gradient(180deg,rgba(20,20,40,.95) 0%,rgba(10,10,26,.95) 100%)}
+.fbtn span{position:relative;z-index:1}
+@keyframes filterRipple{
+  0%{transform:scale(0);opacity:.6}
+  100%{transform:scale(2.5);opacity:0}
+}
+.filter-ripple{
+  position:absolute;width:80px;height:80px;border-radius:50%;
+  background:radial-gradient(circle,rgba(124,106,255,.4),transparent 70%);
+  pointer-events:none;z-index:10;animation:filterRipple .6s ease-out forwards;
+}
+
+/* ===== CARDS ===== */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.card{border-radius:14px;cursor:pointer;position:relative;perspective:800px}
+.card-inner{
+  background:var(--card);border-radius:14px;border:1px solid var(--border);
+  overflow:hidden;position:relative;
+  transition:transform .5s cubic-bezier(.03,.98,.52,.99),box-shadow .5s,border-color .4s;
+  transform-style:preserve-3d;will-change:transform;
+}
+.card:hover .card-inner{
+  border-color:rgba(124,106,255,.25);
+  box-shadow:0 25px 60px rgba(0,0,0,.5),0 0 50px rgba(124,106,255,.08),inset 0 1px 0 rgba(255,255,255,.05);
+}
+.card:hover{z-index:10}
+.card-shine{position:absolute;inset:0;border-radius:14px;opacity:0;transition:opacity .35s;pointer-events:none;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.08),transparent 55%)}
+.card:hover .card-shine{opacity:1}
+.card:active .card-inner{transform:scale(.97)!important;transition-duration:.1s}
+
+.card-img{
+  width:100%;height:140px;position:relative;overflow:hidden;
+  background:var(--card);
+}
+.card-img-inner{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .5s cubic-bezier(.03,.98,.52,.99);
+}
+.card:hover .card-inner .card-img-inner{transform:scale(1.08)}
+.card-img::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:40px;
+  background:linear-gradient(transparent,var(--card));pointer-events:none;
+}
+
+.card-body{padding:14px 18px 12px;position:relative}
+.card-tag{display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:4px 10px;border-radius:6px;margin-bottom:8px}
+.tag-cheat{background:rgba(124,106,255,.12);color:var(--accent2)}
+.tag-visual{background:rgba(96,165,250,.12);color:var(--blue)}
+.tag-mod{background:rgba(74,222,128,.12);color:var(--green)}
+.tag-respack{background:rgba(251,191,36,.12);color:#fbbf24}
+.card-name{font-size:15px;font-weight:700;margin-bottom:4px;line-height:1.3}
+.card-ver{font-size:12px;color:var(--dim)}
+
+.card-foot{
+  display:none;
+}
+
+
+
+/* ===== STATS ===== */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px;padding:56px clamp(20px,4vw,56px);max-width:1160px;margin:0 auto;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stat{text-align:center}
+.stat-n{font-size:clamp(26px,4vw,38px);font-weight:900;background:linear-gradient(135deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat-l{font-size:12.5px;color:var(--dim);margin-top:3px}
+
+/* ===== CTA ===== */
+.cta{text-align:center;padding:90px 24px;position:relative}
+.cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:450px;height:450px;background:radial-gradient(circle,rgba(124,106,255,.06),transparent 70%);pointer-events:none}
+.cta h2{font-size:clamp(26px,5vw,42px);font-weight:900;margin-bottom:12px;position:relative}
+.cta p{color:var(--dim);font-size:14.5px;margin-bottom:28px;position:relative}
+
+
+/* ===== FOOTER ===== */
+footer{padding:32px;text-align:center;color:var(--dim);font-size:12px;border-top:1px solid var(--border)}
+footer p{margin-top:12px;font-weight:600;color:var(--accent2);letter-spacing:.1em}
+.footer-links{display:flex;gap:12px;justify-content:center;margin-bottom:8px}
+.footer-social{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);color:var(--dim);text-decoration:none;font-size:12px;font-weight:500;transition:.3s}
+.footer-social:hover{background:rgba(124,106,255,.08);border-color:rgba(124,106,255,.2);color:var(--accent2);transform:translateY(-2px)}
+.footer-social svg{width:16px;height:16px}
+
+
+
+/* ===== BG PARTICLES ===== */
+#bgP{position:fixed;inset:0;z-index:-1;pointer-events:none}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(30px);transition:.7s cubic-bezier(.22,1,.36,1)}
+.rv.vis{opacity:1;transform:translateY(0)}
+
+/* ===== MODAL ===== */
+.ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.6);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:.35s}
+.ov.on{opacity:1;visibility:visible}
+.modal{background:var(--surface);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:30px;max-width:400px;width:90%;position:relative;transform:scale(.92) translateY(14px);transition:.4s cubic-bezier(.22,1,.36,1)}
+.ov.on .modal{transform:scale(1) translateY(0)}
+.modal-x{position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:7px;border:none;background:rgba(255,255,255,.04);color:var(--dim);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.modal-x:hover{background:rgba(255,255,255,.08);color:var(--txt)}
+.modal h3{font-size:18px;font-weight:800;margin-bottom:5px;padding-right:32px}
+.modal-d{color:var(--dim);font-size:13px;line-height:1.6;margin-bottom:18px}
+.modal-row{display:flex;gap:10px;margin-bottom:18px}
+.modal-chip{flex:1;padding:10px;border-radius:9px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.04);text-align:center}
+.modal-chip .l{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em}
+.modal-chip .v{font-size:14px;font-weight:700;margin-top:2px}
+.modal-btns{display:flex;gap:8px}
+.modal-btns .btn{flex:1;justify-content:center}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--faint);border-radius:3px}
+
+/* ===== PROFILE ===== */
+.prof-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.6);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:.35s}
+.prof-overlay.on{opacity:1;visibility:visible}
+.prof-card{background:var(--surface);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:32px 28px;max-width:360px;width:90%;position:relative;transform:scale(.92) translateY(14px);transition:.4s cubic-bezier(.22,1,.36,1);text-align:center}
+.prof-overlay.on .prof-card{transform:scale(1) translateY(0)}
+.prof-card-x{position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:7px;border:none;background:rgba(255,255,255,.04);color:var(--dim);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.prof-card-x:hover{background:rgba(255,255,255,.08);color:var(--txt)}
+.prof-avatar{width:80px;height:80px;border-radius:50%;margin:0 auto 16px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:#fff;position:relative;cursor:pointer;transition:.3s;overflow:hidden}
+.prof-avatar:hover{box-shadow:0 0 24px rgba(124,106,255,.35);transform:scale(1.05)}
+.prof-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.prof-avatar .upload-hint{position:absolute;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;opacity:0;transition:.2s;font-size:11px;color:#fff}
+.prof-avatar:hover .upload-hint{opacity:1}
+.prof-name{font-size:20px;font-weight:800;margin-bottom:4px}
+.prof-uid{font-size:12px;color:var(--dim);margin-bottom:16px}
+.prof-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.prof-stat{padding:10px 6px;border-radius:10px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04)}
+.prof-stat .sv{font-size:18px;font-weight:800}
+.prof-stat .sl{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+.prof-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);margin:14px 0}
+.prof-info{text-align:left;margin-bottom:16px}
+.prof-info-row{display:flex;justify-content:space-between;padding:6px 0;font-size:12px}
+.prof-info-row .l{color:var(--dim)}
+.prof-info-row .v{font-weight:600}
+.prof-actions{display:flex;gap:8px}
+.prof-actions .btn{flex:1;justify-content:center;font-size:12px;padding:10px 16px}
+.prof-actions .btn-danger{background:rgba(255,80,80,.08);color:#ff6b6b;border:1px solid rgba(255,80,80,.15)}
+.prof-actions .btn-danger:hover{background:rgba(255,80,80,.15);border-color:rgba(255,80,80,.3)}
+
+/* ===== REG MODAL ===== */
+.reg-overlay{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.6);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:.35s}
+.reg-overlay.on{opacity:1;visibility:visible}
+.reg-card{background:var(--surface);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:30px 28px;max-width:360px;width:90%;position:relative;transform:scale(.92) translateY(14px);transition:.4s cubic-bezier(.22,1,.36,1)}
+.reg-overlay.on .reg-card{transform:scale(1) translateY(0)}
+.reg-card-x{position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:7px;border:none;background:rgba(255,255,255,.04);color:var(--dim);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.reg-card-x:hover{background:rgba(255,255,255,.08);color:var(--txt)}
+.reg-card h3{font-size:20px;font-weight:800;margin-bottom:4px}
+.reg-card .sub{color:var(--dim);font-size:13px;margin-bottom:20px}
+.reg-label{display:block;font-size:12px;font-weight:600;color:var(--dim);margin-bottom:6px}
+.reg-input{width:100%;padding:11px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);color:var(--txt);font-family:inherit;font-size:14px;outline:none;transition:.25s;margin-bottom:14px}
+.reg-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,106,255,.08)}
+.reg-input::placeholder{color:var(--dim)}
+.reg-challenge{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:rgba(124,106,255,.06);border:1px solid rgba(124,106,255,.12);margin-bottom:8px}
+.reg-challenge-q{font-size:15px;font-weight:700;color:var(--accent2)}
+.reg-challenge-refresh{margin-left:auto;width:28px;height:28px;border:none;background:rgba(255,255,255,.06);color:var(--dim);border-radius:7px;cursor:pointer;font-size:14px;transition:.2s}
+.reg-challenge-refresh:hover{color:var(--accent);transform:rotate(90deg)}
+.reg-error{color:#ff6b6b;font-size:12px;font-weight:600;min-height:16px;margin:4px 0 10px;text-align:center;opacity:0;transition:.2s}
+.reg-error.show{opacity:1}
+.reg-submit{width:100%;padding:12px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-family:inherit;font-size:14px;font-weight:700;border-radius:10px;cursor:pointer;transition:.3s}
+.reg-submit:hover{box-shadow:0 6px 24px rgba(124,106,255,.3);transform:translateY(-1px)}
+
+/* ===== REQUEST MODAL ===== */
+.req-overlay{position:fixed;inset:0;z-index:250;background:rgba(0,0,0,.6);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:.35s}
+.req-overlay.on{opacity:1;visibility:visible}
+.req-card{background:var(--surface);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:30px 28px;max-width:400px;width:90%;position:relative;transform:scale(.92) translateY(14px);transition:.4s cubic-bezier(.22,1,.36,1)}
+.req-overlay.on .req-card{transform:scale(1) translateY(0)}
+.req-card-x{position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:7px;border:none;background:rgba(255,255,255,.04);color:var(--dim);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.req-card-x:hover{background:rgba(255,255,255,.08);color:var(--txt)}
+.req-card h3{font-size:20px;font-weight:800;margin-bottom:4px}
+.req-card .sub{color:var(--dim);font-size:13px;margin-bottom:20px}
+
+/* ===== LIQUID METAL BUTTON ===== */
+.liquid-btn-wrap{margin-top:28px;display:flex;justify-content:center;position:relative}
+.liquid-btn{
+  position:relative;width:180px;height:52px;border:none;border-radius:100px;
+  cursor:pointer;background:transparent;outline:none;overflow:hidden;
+  box-shadow:0 0 0 1px rgba(0,0,0,.3),0 36px 14px 0 rgba(0,0,0,.02),0 20px 12px 0 rgba(0,0,0,.08),0 9px 9px 0 rgba(0,0,0,.12),0 2px 5px 0 rgba(0,0,0,.15);
+  transition:box-shadow .4s cubic-bezier(.34,1.56,.64,1),transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.liquid-btn:hover{
+  box-shadow:0 0 0 1px rgba(0,0,0,.4),0 12px 6px 0 rgba(0,0,0,.05),0 8px 5px 0 rgba(0,0,0,.1),0 4px 4px 0 rgba(0,0,0,.15),0 1px 2px 0 rgba(0,0,0,.2);
+  transform:translateY(0) scale(1);
+}
+.liquid-btn:active{
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.4),inset 0 1px 2px rgba(0,0,0,.3);
+  transform:translateY(1px) scale(.98);
+}
+.liquid-btn-shader{
+  position:absolute;inset:0;border-radius:100px;overflow:hidden;
+  background:conic-gradient(from 45deg,
+    rgba(124,106,255,.6),rgba(167,139,250,.4),rgba(124,106,255,.2),
+    rgba(200,200,220,.8),rgba(124,106,255,.2),rgba(167,139,250,.4),rgba(124,106,255,.6));
+  background-size:200% 200%;
+  animation:liquidShift 4s ease-in-out infinite;
+  opacity:.9;
+}
+@keyframes liquidShift{
+  0%{background-position:0% 50%;filter:brightness(1) hue-rotate(0deg)}
+  25%{background-position:50% 0%;filter:brightness(1.2) hue-rotate(10deg)}
+  50%{background-position:100% 50%;filter:brightness(1) hue-rotate(0deg)}
+  75%{background-position:50% 100%;filter:brightness(1.1) hue-rotate(-10deg)}
+  100%{background-position:0% 50%;filter:brightness(1) hue-rotate(0deg)}
+}
+.liquid-btn:hover .liquid-btn-shader{
+  animation-duration:1.5s;
+  opacity:1;
+}
+.liquid-btn:active .liquid-btn-shader{
+  animation-duration:.5s;
+}
+.liquid-btn-inner{
+  position:absolute;inset:2px;border-radius:100px;z-index:1;
+  background:linear-gradient(180deg,#202020 0%,#000 100%);
+  transition:box-shadow .15s;
+}
+.liquid-btn:active .liquid-btn-inner{
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.4),inset 0 1px 2px rgba(0,0,0,.3);
+}
+.liquid-btn-text{
+  position:absolute;inset:0;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:500;color:#888;
+  text-shadow:0 1px 2px rgba(0,0,0,.5);
+  transition:color .3s;
+}
+.liquid-btn:hover .liquid-btn-text{color:#bbb}
+.liquid-btn .ripple{
+  position:absolute;width:20px;height:20px;border-radius:50%;z-index:50;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,255,255,.4) 0%,rgba(255,255,255,0) 70%);
+  animation:rippleAnim .6s ease-out forwards;
+}
+@keyframes rippleAnim{
+  0%{transform:translate(-50%,-50%) scale(0);opacity:.6}
+  100%{transform:translate(-50%,-50%) scale(4);opacity:0}
+}
+
+/* ===== NAV BUTTONS ACTIVE STATE ===== */
+.nb-profile.logged-in{background:rgba(124,106,255,.08);border-color:rgba(124,106,255,.2);color:var(--accent2)}
+.nb-lang{font-size:11px;letter-spacing:.05em}
+</style>
 </head>
 <body>
-<div class="bg-particles" aria-hidden="true">
-  <div class="bg-particle" style="top:8%;left:12%;width:5px;height:5px;opacity:0.2;animation-duration:26s"></div>
-  <div class="bg-particle" style="top:15%;left:45%;width:3px;height:3px;opacity:0.12;animation-duration:32s;animation-delay:-4s"></div>
-  <div class="bg-particle" style="top:22%;left:78%;width:4px;height:4px;opacity:0.18;animation-duration:28s;animation-delay:-8s"></div>
-  <div class="bg-particle" style="top:30%;left:20%;width:6px;height:6px;opacity:0.22;animation-duration:24s;animation-delay:-2s"></div>
-  <div class="bg-particle" style="top:38%;left:60%;width:3px;height:3px;opacity:0.14;animation-duration:35s;animation-delay:-12s"></div>
-  <div class="bg-particle" style="top:45%;left:5%;width:4px;height:4px;opacity:0.16;animation-duration:30s;animation-delay:-6s"></div>
-  <div class="bg-particle" style="top:52%;left:88%;width:5px;height:5px;opacity:0.2;animation-duration:27s;animation-delay:-10s"></div>
-  <div class="bg-particle" style="top:58%;left:35%;width:3px;height:3px;opacity:0.12;animation-duration:33s;animation-delay:-15s"></div>
-  <div class="bg-particle" style="top:65%;left:70%;width:4px;height:4px;opacity:0.18;animation-duration:29s;animation-delay:-3s"></div>
-  <div class="bg-particle" style="top:72%;left:15%;width:6px;height:6px;opacity:0.25;animation-duration:22s;animation-delay:-7s"></div>
-  <div class="bg-particle" style="top:78%;left:50%;width:3px;height:3px;opacity:0.13;animation-duration:36s;animation-delay:-14s"></div>
-  <div class="bg-particle" style="top:82%;left:85%;width:5px;height:5px;opacity:0.19;animation-duration:25s;animation-delay:-9s"></div>
-  <div class="bg-particle" style="top:88%;left:30%;width:4px;height:4px;opacity:0.16;animation-duration:31s;animation-delay:-5s"></div>
-  <div class="bg-particle" style="top:92%;left:65%;width:3px;height:3px;opacity:0.11;animation-duration:34s;animation-delay:-11s"></div>
-  <div class="bg-particle" style="top:5%;left:90%;width:4px;height:4px;opacity:0.17;animation-duration:28s;animation-delay:-13s"></div>
-  <div class="bg-particle" style="top:35%;left:40%;width:5px;height:5px;opacity:0.21;animation-duration:26s;animation-delay:-1s"></div>
-  <div class="bg-particle" style="top:50%;left:55%;width:3px;height:3px;opacity:0.14;animation-duration:33s;animation-delay:-8s"></div>
-  <div class="bg-particle" style="top:68%;left:8%;width:4px;height:4px;opacity:0.19;animation-duration:30s;animation-delay:-16s"></div>
-  <div class="bg-particle" style="top:42%;left:92%;width:5px;height:5px;opacity:0.23;animation-duration:25s;animation-delay:-6s"></div>
-  <div class="bg-particle" style="top:10%;left:60%;width:3px;height:3px;opacity:0.13;animation-duration:37s;animation-delay:-10s"></div>
-  <div class="bg-particle" style="top:18%;left:33%;width:4px;height:4px;opacity:0.15;animation-duration:29s;animation-delay:-5s"></div>
-  <div class="bg-particle" style="top:27%;left:70%;width:6px;height:6px;opacity:0.2;animation-duration:26s;animation-delay:-12s"></div>
-  <div class="bg-particle" style="top:36%;left:14%;width:3px;height:3px;opacity:0.12;animation-duration:34s;animation-delay:-9s"></div>
-  <div class="bg-particle" style="top:47%;left:82%;width:5px;height:5px;opacity:0.18;animation-duration:28s;animation-delay:-15s"></div>
-  <div class="bg-particle" style="top:56%;left:25%;width:4px;height:4px;opacity:0.16;animation-duration:31s;animation-delay:-7s"></div>
-  <div class="bg-particle" style="top:64%;left:48%;width:6px;height:6px;opacity:0.22;animation-duration:24s;animation-delay:-11s"></div>
-  <div class="bg-particle" style="top:73%;left:90%;width:3px;height:3px;opacity:0.13;animation-duration:33s;animation-delay:-4s"></div>
-  <div class="bg-particle" style="top:81%;left:8%;width:5px;height:5px;opacity:0.19;animation-duration:27s;animation-delay:-13s"></div>
-  <div class="bg-particle" style="top:89%;left:55%;width:4px;height:4px;opacity:0.17;animation-duration:30s;animation-delay:-6s"></div>
-  <div class="bg-particle" style="top:95%;left:75%;width:3px;height:3px;opacity:0.12;animation-duration:35s;animation-delay:-2s"></div>
-</div>
-<div class="shimmer-lines" aria-hidden="true">
-  <div class="shimmer-line" style="top:18%;left:5%;width:55%;transform:rotate(-2deg);animation-duration:4s;opacity:0.25"></div>
-  <div class="shimmer-line" style="top:35%;left:20%;width:65%;transform:rotate(1deg);animation-duration:5s;animation-delay:-1.5s;opacity:0.22"></div>
-  <div class="shimmer-line" style="top:50%;left:8%;width:50%;transform:rotate(-1deg);animation-duration:3.5s;animation-delay:-0.8s;opacity:0.28"></div>
-  <div class="shimmer-line" style="top:62%;left:25%;width:60%;transform:rotate(2deg);animation-duration:6s;animation-delay:-2.5s;opacity:0.2"></div>
-  <div class="shimmer-line" style="top:78%;left:10%;width:45%;transform:rotate(-1.5deg);animation-duration:4.5s;animation-delay:-3s;opacity:0.26"></div>
-  <div class="shimmer-line" style="top:88%;left:30%;width:55%;transform:rotate(1deg);animation-duration:5.5s;animation-delay:-1s;opacity:0.22"></div>
-  <div class="shimmer-line shimmer-line--v" style="top:5%;left:22%;height:40%;width:1px;transform:rotate(3deg);animation-duration:5s;animation-delay:-2s;opacity:0.18"></div>
-  <div class="shimmer-line shimmer-line--v" style="top:30%;left:75%;height:50%;width:1px;transform:rotate(-2deg);animation-duration:6s;animation-delay:-4s;opacity:0.16"></div>
-</div>
-<div class="ambient-glow" aria-hidden="true">
-  <div class="ambient-blob" style="top:15%;left:10%;width:220px;height:220px;animation-duration:8s"></div>
-  <div class="ambient-blob" style="top:55%;left:65%;width:180px;height:180px;animation-duration:10s;animation-delay:-3s"></div>
-  <div class="ambient-blob" style="top:75%;left:25%;width:200px;height:200px;animation-duration:9s;animation-delay:-5s"></div>
-  <div class="ambient-blob" style="top:8%;left:78%;width:160px;height:160px;animation-duration:11s;animation-delay:-7s"></div>
-  <div class="ambient-blob" style="top:40%;left:45%;width:140px;height:140px;animation-duration:12s;animation-delay:-2s"></div>
-  <div class="ambient-blob" style="top:85%;left:60%;width:170px;height:170px;animation-duration:9.5s;animation-delay:-4s"></div>
-  <div class="ambient-blob" style="top:25%;left:35%;width:150px;height:150px;animation-duration:10.5s;animation-delay:-8s"></div>
-  <div class="ambient-blob" style="top:62%;left:5%;width:190px;height:190px;animation-duration:11.5s;animation-delay:-6s"></div>
-</div>
-<div class="floating-pixels" aria-hidden="true">
-  <div class="fpixel" style="left:6%;width:10px;height:10px;animation-duration:14s;animation-delay:0s;opacity:.25"></div>
-  <div class="fpixel" style="left:16%;width:7px;height:7px;animation-duration:18s;animation-delay:-4s;opacity:.15"></div>
-  <div class="fpixel" style="left:27%;width:12px;height:12px;animation-duration:16s;animation-delay:-8s;opacity:.2"></div>
-  <div class="fpixel" style="left:38%;width:6px;height:6px;animation-duration:20s;animation-delay:-2s;opacity:.13"></div>
-  <div class="fpixel" style="left:49%;width:9px;height:9px;animation-duration:15s;animation-delay:-11s;opacity:.22"></div>
-  <div class="fpixel" style="left:58%;width:11px;height:11px;animation-duration:17s;animation-delay:-6s;opacity:.18"></div>
-  <div class="fpixel" style="left:67%;width:7px;height:7px;animation-duration:19s;animation-delay:-14s;opacity:.14"></div>
-  <div class="fpixel" style="left:76%;width:10px;height:10px;animation-duration:13s;animation-delay:-3s;opacity:.24"></div>
-  <div class="fpixel" style="left:85%;width:8px;height:8px;animation-duration:21s;animation-delay:-9s;opacity:.16"></div>
-  <div class="fpixel" style="left:93%;width:12px;height:12px;animation-duration:15s;animation-delay:-16s;opacity:.21"></div>
-</div>
-<div class="shooting-stars" aria-hidden="true">
-  <div class="star" style="top:8%;left:-10%;animation-duration:7s;animation-delay:1s"></div>
-  <div class="star" style="top:22%;left:-10%;animation-duration:9s;animation-delay:5s"></div>
-  <div class="star" style="top:41%;left:-10%;animation-duration:8s;animation-delay:11s"></div>
-  <div class="star" style="top:63%;left:-10%;animation-duration:10s;animation-delay:3s"></div>
-  <div class="star" style="top:79%;left:-10%;animation-duration:7.5s;animation-delay:14s"></div>
-</div>
-<div class="intro" id="intro">
-  <div class="intro-content">
-    <div class="intro-glow"></div>
-    <div class="intro-text">Привет друг!</div>
-    <div class="intro-sub s1">не можешь найти нормальный чит или визуал?</div>
-    <div class="intro-sub s2">тогда тебе ко мне</div>
-    <div class="intro-luck">удачи</div>
-    <div class="intro-author">by: migodi</div>
-    <div class="intro-skip">нажми чтобы пропустить</div>
+
+<canvas id="bgP"></canvas>
+
+
+<div id="intro">
+  <canvas id="ic"></canvas>
+  <div class="intro-inner">
+
+    <div class="intro-title">MIGODI</div>
+    <div class="intro-sub">cheats&minecraft</div>
+    <div class="intro-line"><div class="intro-line-fill"></div></div>
   </div>
 </div>
 
-<div class="wrap">
-  <div class="top-right">
-    <a class="donate-btn" id="donateBtn" href="https://boosty.to/migodi/donate" target="_blank" rel="noopener">донат</a>
-    <a class="support-btn" id="supportBtn" href="https://t.me/Mig0di" target="_blank" rel="noopener">support</a>
-    <button class="support-btn" id="reqOpenBtn" type="button">попросить чит</button>
-    <button class="lang-switch" id="langSwitch" type="button" aria-label="Switch language">RU / EN</button>
-  </div>
-  <h1 class="title">cheats&visuals</h1>
-
-  <div class="tabs-row">
-  
-  <nav class="tabs">
-    <button class="tab-btn active" data-tab="cheats" data-i18n="tab_cheats"></button>
-    <button class="tab-btn" data-tab="visuals" data-i18n="tab_visuals"></button>
-    <button class="tab-btn" data-tab="respacks" data-i18n="tab_respacks"></button>
-    <button class="tab-btn" data-tab="mods" data-i18n="tab_mods"></button>
-    <button class="tab-btn" data-tab="updates" data-i18n="tab_updates"></button>
-  </nav>
+<nav>
+    <div class="nav-logo">cheats&minecraft</div>
+  <div class="nav-center">
+    <a href="updates.html" class="nav-liquid"><span class="nav-liquid-shader"></span><span class="nav-liquid-inner"></span><span class="nav-liquid-text">обновления</span></a>
+    <a href="https://boosty.to/migodi/donate" target="_blank" class="nav-liquid nb-donat"><span class="nav-liquid-shader"></span><span class="nav-liquid-inner"></span><span class="nav-liquid-text">донат</span></a>
+    <a href="https://t.me/Mig0di" target="_blank" class="nav-liquid"><span class="nav-liquid-shader"></span><span class="nav-liquid-inner"></span><span class="nav-liquid-text">support</span></a>
+    <button class="nav-liquid" onclick="openReq()"><span class="nav-liquid-shader"></span><span class="nav-liquid-inner"></span><span class="nav-liquid-text">попросить чит</span></button>
+    <button class="nav-liquid nb-profile" onclick="openProfile()"><span class="nav-liquid-shader"></span><span class="nav-liquid-inner"></span><span class="nav-liquid-text"><span id="navProfileName">профиль</span></span></button>
+    <button class="nav-liquid" onclick="toggleLang()" id="langBtn"><span class="nav-liquid-shader"></span><span class="nav-liquid-inner"></span><span class="nav-liquid-text">RU / EN</span></button>
   </div>
 
-  <section id="cheats" class="tab-panel active">
-    <h2 class="section-title" data-i18n="cheats_title"> </h2>
-    <div class="search-box">
-      <input type="search" id="cheatsSearch" placeholder="Поиск читов…" data-i18n-placeholder="search_ph" autocomplete="off">
-    </div>
-    <div class="ver-filter" data-grid="cheatsGrid">
-      <button class="ver-btn active" data-ver="all">Все</button>
-      <button class="ver-btn" data-ver="1.16.5">1.16.5</button>
-      <button class="ver-btn" data-ver="1.21.4">1.21.4</button>
-      <button class="ver-btn" data-ver="1.21.11">1.21.11</button>
-    </div>
-    <div class="grid" id="cheatsGrid">
-      <div class="card" data-ver="1.21.4">
-        <h3>Zenith Client</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.21.4</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/zenith-fix.jar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
-      </div>
-      <div class="card" data-ver="1.21.4">
-        <h3>System DLC</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.21.4</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/system-client-1.0.0.jar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
-      </div>
-      <div class="card" data-ver="1.21.4">
-        <h3>Delta Client</h3>
-        <div class="card-footer">
-<span class="version-pill">1.21.4</span>        
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/delta-client-1.0.0.2.jar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
-      </div>
-      <div class="card" data-ver="1.21.11">
-        <h3>Expensive Client</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.21.11</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/Expensive-cracked.jar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
-      </div>
+</nav>
 
-      <div class="card" data-ver="1.16.5">
-        <h3>Monoton Client</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.16.5</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/Monoton-cracked.rar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: распаковать в папку mods (Forge 1.16.5).</p>
-      </div>
-      <div class="card" data-ver="1.21.4">
-        <h3>Monoware Client</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.21.4</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/monoware.jar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
-      </div>
-      <div class="card" data-ver="1.21.4">
-        <h3>Nuclear Client</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.21.4</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/nuclear.jar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
-      </div>
-      <div class="card" data-ver="1.16.5">
-        <h3>Catlavan Client</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.16.5</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/Catlavan.zip" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: распаковать в папку mods (Forge 1.16.5).</p>
-      </div>
-      <div class="card" data-ver="1.21.4">
-        <h3>Wild Client</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.21.4</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/wild-v1.1.jar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
-      </div>
-      <div class="card is-new" data-ver="1.21.4">
-        <span class="new-badge">Новинка</span>
-        <h3>Pouch Client</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.21.4</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/punch-1.0.0.jar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
-      </div>
-      <div class="card is-new" data-ver="1.21.4">
-        <span class="new-badge">Новинка</span>
-        <h3>Liminar Client</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.21.4</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/LiminarCrack.jar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
-      </div>
+<section class="hero" id="home">
+  <div class="hero-orb"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> <span data-i18n="hero_badge">Обновлено</span></div>
+    <h1 data-i18n="hero_h1">Лучшие моды<br>для <span class="g">Minecraft</span></h1>
+    <p data-i18n="hero_p">Читы, визуалы, модификации и ресурспаки. Скачивай бесплатно и устанавливай за секунду.</p>
+    <div class="hero-btns">
+      <a href="#about" class="btn btn-ghost" data-i18n="hero_btn2">Подробнее</a>
     </div>
-    <div class="cheats-note">
-      <p class="by-line">
-        <img class="by-avatar" src="avatar.jpg" alt="migodi">
-        by:migodi
-        <a class="tg-btn" href="https://t.me/migodihvh" target="_blank" rel="noopener" aria-label="Telegram">
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
-            <path d="M21.05 2.93 2.6 10.2c-1.24.5-1.23 1.19-.23 1.5l4.72 1.47 1.83 5.6c.22.6.11.84.75.84.5 0 .72-.23 1-.5l2.4-2.33 4.79 3.54c.88.49 1.52.24 1.74-.82L22.9 4.3c.32-1.3-.5-1.88-1.85-1.37Zm-3.1 3.6L9.2 13.3l-.35 3.63-1.7-5.2 10.8-6.8c.5-.3.96-.14.58.19Z"></path>
-          </svg>
-        </a>
-        <a class="tg-btn yt-btn" href="https://www.youtube.com/@m1g0d1d1" target="_blank" rel="noopener" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
-            <path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14C4.5 20.5 12 20.5 12 20.5s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"></path>
-          </svg>
-        </a>
-      </p>
-      <p class="beta-line" data-i18n="beta_note">release 1.0</p>
-      <div class="advantages">
-        <div class="adv-col">
-          <p class="advantages-note">Бесплатно и без регистрации</p>
-          <p class="advantages-note">Без вирусов и майнеров</p>
-          <p class="advantages-note">Проверено антивирусами</p>
-        </div>
-        <div class="adv-col adv-col--right">
-          <p class="advantages-note">Поддержка в Telegram</p>
-          <p class="advantages-note">Простая установка</p>
-        </div>
-      </div>
-    </div>
-      <p class="disclaimer" data-i18n="disclaimer">Мы не несём ответственности. Все материалы скачиваются из других исходников.</p>
-  </section>
+  </div>
+</section>
 
-  <section id="visuals" class="tab-panel">
-    <h2 class="section-title" data-i18n="visuals_title">Визуалы</h2>
-    <div class="ver-filter" data-grid="visualsGrid">
-      <button class="ver-btn active" data-ver="all">Все</button>
-      <button class="ver-btn" data-ver="1.16.5">1.16.5</button>
-      <button class="ver-btn" data-ver="1.21.4">1.21.4</button>
-      <button class="ver-btn" data-ver="1.21.11">1.21.11</button>
-    </div>
-    <div class="grid" id="visualsGrid">
-      <div class="card" data-ver="1.16.5">
-        <h3>NightVisuals</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.16.5</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/NightVisual.rar" download data-i18n="dl"></a>
-          <a class="tg-btn" href="https://t.me/night_visual" target="_blank" rel="noopener" aria-label="Telegram">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
-              <path d="M21.05 2.93 2.6 10.2c-1.24.5-1.23 1.19-.23 1.5l4.72 1.47 1.83 5.6c.22.6.11.84.75.84.5 0 .72-.23 1-.5l2.4-2.33 4.79 3.54c.88.49 1.52.24 1.74-.82L22.9 4.3c.32-1.3-.5-1.88-1.85-1.37Zm-3.1 3.6L9.2 13.3l-.35 3.63-1.7-5.2 10.8-6.8c.5-.3.96-.14.58.19Z"></path>
-            </svg>
-          </a>
-        </div>
-        <p class="card-install">Установка: распаковать в папку mods (Forge 1.16.5).</p>
-      </div>
-      <div class="card" data-ver="1.21.4">
-        <h3>Destra Visuals</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.21.4</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/destravisuals-cracked.jar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
-      </div>
-      <div class="card" data-ver="1.21.4">
-        <h3>PulseVisuals</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.21.4</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/pulse-1.1.2.jar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
-      </div>
-      <div class="card" data-ver="1.21.11">
-        <h3>Pulse Visuals</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.21.11</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/pulse-1.0-SNAPSHOT.jar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
-      </div>
-      <div class="card" data-ver="1.16.5">
-        <h3>Really Visuals</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.16.5</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/reallyvisuals-1.0.0.2.jar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: распаковать в папку mods (Forge 1.16.5).</p>
-      </div>
-    </div>
-  </section>
+<section class="section" id="catalog">
+  <div class="sec-head rv">
+    <h2 data-i18n="catalog_h2">Каталог</h2>
+    <p data-i18n="catalog_p">28 модов, читов и паков для разных версий Minecraft</p>
+  </div>
+  <div class="filters rv">
+    <button class="fbtn on" data-f="cheat"><span data-i18n="tab_cheats">Читы</span></button>
+    <button class="fbtn" data-f="visual"><span data-i18n="tab_visuals">Визуалы</span></button>
+    <button class="fbtn" data-f="mod"><span data-i18n="tab_mods">Моды</span></button>
+    <button class="fbtn" data-f="respack"><span data-i18n="tab_respacks">Ресурспаки</span></button>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
 
-  <section id="respacks" class="tab-panel">
-    <h2 class="section-title" data-i18n="tab_respacks"></h2>
-    <div class="grid" id="respacksGrid">
-      <div class="card respack-card">
-        <div class="respack-preview" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="photo_2026-08-13_14-58-55.jpg" alt="PvP Resource Pack">
-        </div>
-        <h3>PvP Resource Pack</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.16.5 - 1.21+</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/CTPAXAHET.zip" download data-i18n="dl"></a>
-        </div>
-      </div>
-      <div class="card respack-card">
-        <div class="respack-preview" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="photo_2026-08-13_16-03-35.jpg" alt="PvP Resource Pack 2">
-        </div>
-        <h3>PvP Resource Pack</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.16.5 - 1.21+</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/xWindaLinux.zip" download data-i18n="dl"></a>
-        </div>
-      </div>
-      <div class="card respack-card">
-        <div class="respack-preview" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="photo_2026-08-13_16-08-59.jpg" alt="PvP Resource Pack 3">
-        </div>
-        <h3>PvP Resource Pack</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.16.5 - 1.21+</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/xDroppeWinda.zip" download data-i18n="dl"></a>
-        </div>
-      </div>
-      <div class="card respack-card">
-        <div class="respack-preview" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="photo_2026-08-15_12-10-43.jpg" alt="PvP Resource Pack 4">
-        </div>
-        <h3>PvP Resource Pack</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.16.5 - 1.21+</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/resiurcepack1.zip" download data-i18n="dl"></a>
-        </div>
-      </div>
-      <div class="card respack-card">
-        <div class="respack-preview" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="photo_2026-08-15_12-10-51.jpg" alt="PvP Resource Pack 5">
-        </div>
-        <h3>PvP Resource Pack</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.16.5 - 1.21+</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/Resourcepack9.zip" download data-i18n="dl"></a>
-        </div>
-      </div>
-      <div class="card respack-card">
-        <div class="respack-preview" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="photo_2026-08-15_12-11-17.jpg" alt="PvP Resource Pack 6">
-        </div>
-        <h3>PvP Resource Pack</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.16.5 - 1.21+</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/Resourcepack20.rar" download data-i18n="dl"></a>
-        </div>
-      </div>
-      <div class="card respack-card">
-        <div class="respack-preview" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="pvp-preview-7.jpg" alt="PvP Resource Pack 7">
-        </div>
-        <h3>PvP Resource Pack</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.16.5 - 1.21+</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/Resource.Pack10.zip" download data-i18n="dl"></a>
-        </div>
-      </div>
-      <div class="card respack-card">
-        <div class="respack-preview" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="pvp-preview-8.jpg" alt="PvP Resource Pack 8">
-        </div>
-        <h3>PvP Resource Pack</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.16.5 - 1.21+</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/Resource.Pack2.zip" download data-i18n="dl"></a>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section id="mods" class="tab-panel">
-    <h2 class="section-title" data-i18n="tab_mods"></h2>
-    <div class="ver-filter" data-grid="modsGrid">
-      <button class="ver-btn active" data-ver="all">Все</button>
-      <button class="ver-btn" data-ver="1.21.4">1.21.4</button>
-      <button class="ver-btn" data-ver="1.21.11">1.21.11</button>
-    </div>
-    <div class="grid" id="modsGrid">
-      <div class="card" data-ver="1.21.4">
-        <h3>Fabric API</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.21.4</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/fabric-api-0.119.4-1.21.4.jar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
-      </div>
-      <div class="card" data-ver="1.21.11">
-        <h3>Fabric API</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.21.11</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/fabric-api-0.141.4+1.21.11.jar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
-      </div>
-      <div class="card" data-ver="1.21.4">
-        <h3>Sodium Fabric</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.21.4</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/sodium-fabric-0.6.13+mc1.21.4.jar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
-      </div>
-      <div class="card" data-ver="1.21.11">
-        <h3>Sodium Fabric</h3>
-        <div class="card-footer">
-          <span class="version-pill">1.21.11</span>
-          <a class="dl-btn" href="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/sodium-fabric-0.8.12-mc1.21.11.jar" download data-i18n="dl"></a>
-        </div>
-        <p class="card-install">Установка: закинуть .jar в папку mods.</p>
-      </div>
-    </div>
-  </section>
 
-  <section id="updates" class="tab-panel">
-    <h2 class="section-title" data-i18n="tab_updates"></h2>
-    <div class="updates-list">
-      <div class="update-item">
-        <div class="update-date">26.08.2026</div>
-        <div class="update-body"><strong>Обновление:</strong> Добавлена вкладка Mods с Fabric API и Sodium Fabric (версии 1.21.4 и 1.21.11), кнопка доната (Boosty), заголовок теперь белый с глубоким свечением, переходы тем стали плавнее.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">23.08.2026</div>
-        <div class="update-body"><strong>Обновление:</strong> Добавлены читы Pouch Client 1.21.4 и Liminar Client 1.21.4, два новых PvP ресурс-пака и превью для них, исправлены ссылки скачивания.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">23.08.2026</div>
-        <div class="update-body"><strong>Обновление:</strong> Добавлен фильтр по версиям, счётчики скачиваний у каждой карточки, комментарии, кнопка «Попросить чит», подсказки по установке под каждым файлом, добавлен бейдж «Новинка».</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">22.08.2026</div>
-        <div class="update-body"><strong>Иконка:</strong> Добавлена иконка сайта во вкладку браузера.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">22.08.2026</div>
-        <div class="update-body"><strong>Карточки:</strong> Исправлено «зависание» карточек при наведении — теперь они плавно возвращаются на место после ухода курсора.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">22.08.2026</div>
-        <div class="update-body"><strong>SEO:</strong> Сайт добавлен в Google и Яндекс — теперь его можно найти через поиск по запросам про читы и визуалы.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">22.08.2026</div>
-        <div class="update-body"><strong>Исправления:</strong> Убран чёрный слой с картинок в ресурспаках — теперь превью отображаются ярко и чисто.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">22.08.2026</div>
-        <div class="update-body"><strong>Обновление:</strong> Название изменено на cheats&visuals. Вкладки переведены на английский. Подключён файл NightVisuals. Исправлены версии PulseVisuals (1.21.4 и 1.21.11).</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">22.08.2026</div>
-        <div class="update-body"><strong>Фон:</strong> Добавлены новые эффекты — летающие пиксели, падающие звёзды, больше частиц и свечения. Темы теперь переключаются плавно.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">22.08.2026</div>
-        <div class="update-body"><strong>Визуалы:</strong> Добавлен NightVisuals 1.16.5 во вкладку «Визуалы».</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">17.08.2026</div>
-        <div class="update-body"><strong>Заголовок:</strong> Название сайта изменено на minecraft&visuals.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">17.08.2026</div>
-        <div class="update-body"><strong>Исправления:</strong> Пофиксил систему профиля и вкладку визуалы.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">17.08.2026</div>
-        <div class="update-body"><strong>Карточки:</strong> Убраны описания из карточек, оставлены только название, версия и кнопка скачивания.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">17.08.2026</div>
-        <div class="update-body"><strong>Курсор:</strong> Карточки наклоняются за курсором при наведении.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">15.08.2026</div>
-        <div class="update-body"><strong>Обновление фона:</strong> Добавлен ambient deep glow — 4 светящихся orb'а с плавной анимацией для глубокого свечения фона.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">15.08.2026</div>
-        <div class="update-body"><strong>Темы:</strong> Добавлено 16 пресетов тем. Переработан CSS для плавного переключения (0.3s transition). Добавлен выбор шрифта.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">15.08.2026</div>
-        <div class="update-body"><strong>Визуалы:</strong> Добавлены 3 новых визуала: Pulse Visuals 1.21.4, Really Visuals 1.16.5. Обновлён Wild Client до 1.21.4.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">14.08.2026</div>
-        <div class="update-body"><strong>Читы:</strong> Добавлена система UID. Аккаунт migodi получает UID #1.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">14.08.2026</div>
-        <div class="update-body"><strong>Профиль:</strong> Добавлена страница профиля с аватаром, статистикой визитов и UID. HTML-профиль заменён на современный.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">14.08.2026</div>
-        <div class="update-body"><strong>Telegram:</strong> Добавлена ссылка на Telegram-канал. Поддержка через @migodihvh.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">13.08.2026</div>
-        <div class="update-body"><strong>Исправления:</strong> Мелкие багфиксы и оптимизация производительности.</div>
-      </div>
-      <div class="update-item">
-        <div class="update-date">12.08.2026</div>
-        <div class="update-body"><strong>Релиз:</strong> Добавлены читы: Delta, Expensive, Monoton, Monoware, Catlavan, Nuclear, Zenith.</div>
-      </div>
-    </div>
-  </section>
-
-   
+<div class="stats rv" id="about">
+  <div class="stat"><div class="stat-n" data-c="28">0</div><div class="stat-l" data-i18n="stat_mods">Модов</div></div>
+  <div class="stat"><div class="stat-n" data-c="4">0</div><div class="stat-l" data-i18n="stat_cats">Категории</div></div>
+  <div class="stat"><div class="stat-n" data-c="3">0</div><div class="stat-l" data-i18n="stat_vers">Версии MC</div></div>
+  <div class="stat"><div class="stat-n" data-c="100">0</div><div class="stat-l" data-i18n="stat_free">% Бесплатно</div></div>
 </div>
 
-<div class="reg-overlay" id="reqOverlay" hidden>
-  <div class="reg-modal">
-    <button class="reg-close" id="reqClose" type="button" aria-label="Закрыть">&times;</button>
-    <div class="reg-glow"></div>
-    <h2 class="reg-title">Попросить чит / визуал</h2>
-    <p class="reg-sub">Опиши, что хочешь увидеть на сайте</p>
-    <label class="reg-label">Ник</label>
-    <input class="reg-input" id="reqUsername" type="text" maxlength="20" placeholder="твой ник" autocomplete="off">
-    <label class="reg-label">Что добавить</label>
-    <input class="reg-input" id="reqText" type="text" maxlength="280" placeholder="название или ссылка" autocomplete="off">
-    <div class="reg-error" id="reqError"></div>
-    <button class="reg-submit" id="reqSubmit" type="button">Отправить</button>
-  </div>
-</div>
-
-<div class="profile" id="profile">
-  <button class="profile-trigger" id="profileTrigger" type="button">
-    <span class="profile-avatar" id="profileAvatar"></span>
-  </button>
-  <div class="profile-overlay" id="profileOverlay"></div>
-  <div class="profile-card" id="profileCard" hidden>
-    <button class="profile-card-close" id="profileClose" type="button">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+<section class="cta rv">
+  <h2 data-i18n="cta_h2">Готов к игре?</h2>
+  <p data-i18n="cta_p">Скачивай моды и начинай прямо сейчас</p>
+  <div class="liquid-btn-wrap">
+    <button class="liquid-btn" id="liquidBtn">
+      <span class="liquid-btn-shader"></span>
+      <span class="liquid-btn-inner"></span>
+      <span class="liquid-btn-text" data-i18n="cta_btn">Выбрать мод</span>
     </button>
-    <div class="profile-card-glow"></div>
-    <div class="profile-card-avatar-wrap">
-      <div class="profile-card-avatar" id="profileCardAvatar"></div>
-      <label class="profile-card-upload" id="profileUploadBtn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-        <input type="file" id="profileFile" accept="image/*" hidden>
-      </label>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="https://t.me/migodihvh" target="_blank" class="footer-social">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+      Telegram
+    </a>
+    <a href="https://www.youtube.com/@m1g0d1d1" target="_blank" class="footer-social">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      YouTube
+    </a>
+  </div>
+  <p>by:migodi</p>
+</footer>
+
+<div class="ov" id="ov">
+  <div class="modal">
+    <button class="modal-x" onclick="closeM()">✕</button>
+    <div class="modal-img" id="mI" style="width:100%;height:160px;border-radius:12px;margin-bottom:16px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.3)"></div>
+    <h3 id="mT"></h3>
+    <div class="modal-d" id="mD"></div>
+    <div class="modal-row">
+      <div class="modal-chip"><div class="l">Версия</div><div class="v" id="mV"></div></div>
+      <div class="modal-chip"><div class="l">Категория</div><div class="v" id="mC"></div></div>
     </div>
-    <div class="profile-card-name" id="profileCardName">гость</div>
-    <div class="profile-card-stats">
-      <div class="profile-card-stat">
-        <span class="profile-card-stat-val" id="profileVisits">1</span>
-        <span class="profile-card-stat-label" data-i18n="profile_stat_visits"></span>
-      </div>
-      <div class="profile-card-stat">
-        <span class="profile-card-stat-val" id="profileDays">0</span>
-        <span class="profile-card-stat-label" data-i18n="profile_stat_days"></span>
-      </div>
-      <div class="profile-card-stat">
-        <span class="profile-card-stat-val" id="profileLastSeen"></span>
-        <span class="profile-card-stat-label" data-i18n="profile_stat_last"></span>
-      </div>
-    </div>
-    <div class="profile-card-divider"></div>
-    <div class="profile-card-info">
-      <div class="profile-card-info-row">
-        <span class="profile-card-info-label" data-i18n="profile_info_created"></span>
-        <span class="profile-card-info-val" id="profileCreated"></span>
-      </div>
-      <div class="profile-card-info-row">
-        <span class="profile-card-info-label" data-i18n="profile_info_last"></span>
-        <span class="profile-card-info-val" id="profileLastVisit"></span>
-      </div>
-    </div>
-    <div class="profile-card-actions">
-      <button class="profile-card-action" id="profileChangeName" type="button" data-i18n="profile_change"></button>
-      <button class="profile-card-action profile-card-action--danger" id="profileLogout" type="button" data-i18n="profile_logout"></button>
+    <div class="modal-btns">
+      <a href="#" class="btn btn-fill" id="mDl" download data-i18n="dl">Скачать</a>
+      <button class="btn btn-ghost" onclick="closeM()" data-i18n="close">Закрыть</button>
     </div>
   </div>
 </div>
 
-<div class="reg-overlay" id="regOverlay" hidden>
-  <div class="reg-modal">
-    <button class="reg-close" id="regClose" type="button" aria-label="Закрыть">&times;</button>
-    <div class="reg-glow"></div>
-    <h2 class="reg-title" id="regTitle">Регистрация</h2>
-    <p class="reg-sub" data-i18n="reg_sub">Придумай логин — без пароля и почты</p>
+<!-- PROFILE -->
+<div class="prof-overlay" id="profOv">
+  <div class="prof-card">
+    <button class="prof-card-x" onclick="closeProfile()">✕</button>
+    <div class="prof-avatar" id="profAvatar" onclick="document.getElementById('profFile').click()">
+      <span id="profAvatarText">?</span>
+      <div class="upload-hint" data-i18n="upload_photo">Загрузить фото</div>
+      <input type="file" id="profFile" accept="image/*" style="display:none" onchange="uploadAvatar(this)">
+    </div>
+    <div class="prof-name" id="profName" data-i18n="guest">Гость</div>
+    <div class="prof-uid" id="profUid"></div>
+    <div class="prof-stats">
+      <div class="prof-stat"><div class="sv" id="profVisits">0</div><div class="sl" data-i18n="stat_visits">Визитов</div></div>
+      <div class="prof-stat"><div class="sv" id="profDays">0</div><div class="sl" data-i18n="stat_days">Дней</div></div>
+      <div class="prof-stat"><div class="sv" id="profLastSeen">—</div><div class="sl" data-i18n="stat_last">Последний</div></div>
+    </div>
+    <div class="prof-divider"></div>
+    <div class="prof-info">
+      <div class="prof-info-row"><span class="l" data-i18n="info_created">Создан</span><span class="v" id="profCreated">—</span></div>
+      <div class="prof-info-row"><span class="l" data-i18n="info_last_visit">Последний заход</span><span class="v" id="profLastVisit">—</span></div>
+    </div>
+    <div class="prof-actions">
+      <button class="btn btn-ghost" onclick="closeProfile();openReg(true)" data-i18n="change_nick">Сменить ник</button>
+      <button class="btn btn-danger" onclick="logout()" data-i18n="logout">Выйти</button>
+    </div>
+  </div>
+</div>
 
-    <label class="reg-label" data-i18n="reg_login_label">Логин</label>
-    <input class="reg-input" id="regUsername" type="text" maxlength="20" autocomplete="off" placeholder="твой ник" data-i18n-placeholder="reg_login_ph">
-
-    <label class="reg-label" data-i18n="reg_challenge_label">Подтверди, что ты не бот</label>
+<!-- REGISTRATION -->
+<div class="reg-overlay" id="regOv">
+  <div class="reg-card">
+    <button class="reg-card-x" onclick="closeReg()">✕</button>
+    <h3 id="regTitle" data-i18n="register">Регистрация</h3>
+    <div class="sub" data-i18n="reg_sub">Придумай логин — без пароля и почты</div>
+    <label class="reg-label" data-i18n="reg_login">Логин</label>
+    <input class="reg-input" id="regUsername" type="text" maxlength="20" autocomplete="off" placeholder="твой ник" data-i18n-ph="reg_ph">
+    <label class="reg-label" data-i18n="reg_bot_check">Подтверди, что ты не бот</label>
     <div class="reg-challenge">
       <span class="reg-challenge-q" id="regChallengeQ">3 + 4 = ?</span>
-      <button class="reg-challenge-refresh" id="regChallengeRefresh" type="button" title="Новый пример" aria-label="Новый пример">&#8635;</button>
+      <button class="reg-challenge-refresh" onclick="newChallenge()" title="Новый пример">&#8635;</button>
     </div>
-    <input class="reg-input" id="regAnswer" type="text" inputmode="numeric" autocomplete="off" placeholder="ответ" data-i18n-placeholder="reg_answer_ph">
-
+    <input class="reg-input" id="regAnswer" type="text" inputmode="numeric" autocomplete="off" placeholder="ответ" data-i18n-ph="reg_answer_ph">
     <div class="reg-error" id="regError"></div>
-
-    <button class="reg-submit" id="regSubmit" type="button" data-i18n="reg_submit">Зарегаться</button>
+    <button class="reg-submit" id="regSubmit" onclick="submitReg()" data-i18n="reg_submit">Зарегаться</button>
   </div>
 </div>
 
-
-
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close" id="lightboxClose">&times;</button>
-  <img class="lightbox-img" id="lightboxImg" src="" alt="Preview">
-</div>
-
-<button class="theme-toggle" id="themeToggle" aria-label="Настровки">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="3"/>
-      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-    </svg>
-  </button>
-<div class="theme-panel" id="themePanel">
-  <div class="theme-panel-header">
-    <span> </span>
-    <button class="theme-panel-close" id="themePanelClose">&times;</button>
-  </div>
-  <div class="theme-panel-grid">
-    <button class="theme-btn active" data-theme='{"bg":"#050508","card":"#0c0c14","border":"rgba(0,229,255,0.08)","accent":"#00e5ff","accent2":"#40efff","text":"#e0f0f8","dim":"#556870","glow":"rgba(0,229,255,0.04)","glow2":"rgba(0,229,255,0.01)"}' title="Cyan" style="background:linear-gradient(135deg,#00e5ff,#0088cc)"></button>
-    <button class="theme-btn" data-theme='{"bg":"#050510","card":"#0c0c1c","border":"rgba(100,120,255,0.1)","accent":"#6478ff","accent2":"#8090ff","text":"#e0e8ff","dim":"#556080","glow":"rgba(100,120,255,0.04)","glow2":"rgba(100,120,255,0.01)"}' title="Indigo" style="background:linear-gradient(135deg,#6478ff,#8090ff)"></button>
-    <button class="theme-btn" data-theme='{"bg":"#080510","card":"#100c1c","border":"rgba(160,80,255,0.1)","accent":"#a050ff","accent2":"#c080ff","text":"#f0e6ff","dim":"#705888","glow":"rgba(160,80,255,0.04)","glow2":"rgba(160,80,255,0.01)"}' title="Purple" style="background:linear-gradient(135deg,#a050ff,#c080ff)"></button>
-    <button class="theme-btn" data-theme='{"bg":"#050a08","card":"#0c1410","border":"rgba(0,255,160,0.08)","accent":"#00ffa0","accent2":"#40ffc0","text":"#e0fff0","dim":"#508070","glow":"rgba(0,255,160,0.04)","glow2":"rgba(0,255,160,0.01)"}' title="Mint" style="background:linear-gradient(135deg,#00ffa0,#00cc88)"></button>
-    <button class="theme-btn" data-theme='{"bg":"#0a0508","card":"#140c10","border":"rgba(255,60,120,0.1)","accent":"#ff3c78","accent2":"#ff6090","text":"#ffe6f0","dim":"#805068","glow":"rgba(255,60,120,0.04)","glow2":"rgba(255,60,120,0.01)"}' title="Rose" style="background:linear-gradient(135deg,#ff3c78,#ff6090)"></button>
-    <button class="theme-btn" data-theme='{"bg":"#050508","card":"#0c0c14","border":"rgba(200,200,200,0.08)","accent":"#c8c8c8","accent2":"#ffffff","text":"#f0f0f0","dim":"#686868","glow":"rgba(255,255,255,0.04)","glow2":"rgba(255,255,255,0.01)"}' title="Silver" style="background:linear-gradient(135deg,#c8c8c8,#ffffff)"></button>
-    <button class="theme-btn" data-theme='{"bg":"#080508","card":"#120c12","border":"rgba(255,160,0,0.1)","accent":"#ffa000","accent2":"#ffcc44","text":"#fff3e6","dim":"#786040","glow":"rgba(255,160,0,0.04)","glow2":"rgba(255,160,0,0.01)"}' title="Amber" style="background:linear-gradient(135deg,#ffa000,#ffcc44)"></button>
-    <button class="theme-btn" data-theme='{"bg":"#0a0805","card":"#14120c","border":"rgba(255,200,0,0.08)","accent":"#ffc800","accent2":"#ffe044","text":"#fff8e0","dim":"#787050","glow":"rgba(255,200,0,0.04)","glow2":"rgba(255,200,0,0.01)"}' title="Gold" style="background:linear-gradient(135deg,#ffc800,#ffe044)"></button>
-    <button class="theme-btn" data-theme='{"bg":"#080505","card":"#120c0c","border":"rgba(255,80,80,0.1)","accent":"#ff5050","accent2":"#ff8080","text":"#ffe6e6","dim":"#785050","glow":"rgba(255,80,80,0.04)","glow2":"rgba(255,80,80,0.01)"}' title="Red" style="background:linear-gradient(135deg,#ff5050,#ff8080)"></button>
-    <button class="theme-btn" data-theme='{"bg":"#050a08","card":"#0c1412","border":"rgba(0,200,180,0.08)","accent":"#00c8b4","accent2":"#40e8d4","text":"#e0fff8","dim":"#507870","glow":"rgba(0,200,180,0.04)","glow2":"rgba(0,200,180,0.01)"}' title="Teal" style="background:linear-gradient(135deg,#00c8b4,#40e8d4)"></button>
-    <button class="theme-btn" data-theme='{"bg":"#08050a","card":"#120c14","border":"rgba(255,100,200,0.08)","accent":"#ff64c8","accent2":"#ff90e0","text":"#fff0fa","dim":"#785070","glow":"rgba(255,100,200,0.04)","glow2":"rgba(255,100,200,0.01)"}' title="Pink" style="background:linear-gradient(135deg,#ff64c8,#ff90e0)"></button>
-    <button class="theme-btn" data-theme='{"bg":"#050808","card":"#0c1212","border":"rgba(0,180,200,0.08)","accent":"#00b4c8","accent2":"#40d4e8","text":"#e0f8ff","dim":"#507078","glow":"rgba(0,180,200,0.04)","glow2":"rgba(0,180,200,0.01)"}' title="Aqua" style="background:linear-gradient(135deg,#00b4c8,#40d4e8)"></button>
-    <button class="theme-btn" data-theme='{"bg":"#050805","card":"#0c120c","border":"rgba(0,200,60,0.08)","accent":"#00c83c","accent2":"#40e86c","text":"#e0ffe6","dim":"#507048","glow":"rgba(0,200,60,0.04)","glow2":"rgba(0,200,60,0.01)"}' title="Lime" style="background:linear-gradient(135deg,#00c83c,#40e86c)"></button>
-    <button class="theme-btn" data-theme='{"bg":"#05080a","card":"#0c1214","border":"rgba(60,140,255,0.08)","accent":"#3c8cff","accent2":"#60a8ff","text":"#e6f0ff","dim":"#506880","glow":"rgba(60,140,255,0.04)","glow2":"rgba(60,140,255,0.01)"}' title="Azure" style="background:linear-gradient(135deg,#3c8cff,#60a8ff)"></button>
-    <button class="theme-btn" data-theme='{"bg":"#0a0805","card":"#14120c","border":"rgba(200,140,0,0.08)","accent":"#c88c00","accent2":"#e8b040","text":"#fff4e0","dim":"#786840","glow":"rgba(200,140,0,0.04)","glow2":"rgba(200,140,0,0.01)"}' title="Bronze" style="background:linear-gradient(135deg,#c88c00,#e8b040)"></button>
-    <button class="theme-btn" data-theme='{"bg":"#050508","card":"#0c0c14","border":"rgba(0,229,255,0.08)","accent":"#00e5ff","accent2":"#40efff","text":"#e0f0f8","dim":"#556870","glow":"rgba(0,229,255,0.04)","glow2":"rgba(0,229,255,0.01)"}' title="Neon" style="background:linear-gradient(135deg,#00e5ff,#00ff88)"></button>
-  </div>
-  <div class="theme-custom">
-    <span class="theme-custom-label"> </span>
-    <div class="theme-custom-row">
-      <input type="color" id="customAccent" value="#00e5ff" class="theme-color-input">
-      <span class="theme-custom-name"></span>
-    </div>
-    <button class="theme-custom-apply" id="customApply"></button>
-  </div>
-  <div class="theme-font">
-    <span class="theme-custom-label"></span>
-    <div class="theme-font-grid">
-      <button class="theme-font-btn active" data-font="inherit" style="font-family:inherit">Aa</button>
-      <button class="theme-font-btn" data-font="'Inter',sans-serif" style="font-family:Inter,sans-serif">Aa</button>
-      <button class="theme-font-btn" data-font="'Montserrat',sans-serif" style="font-family:Montserrat,sans-serif">Aa</button>
-      <button class="theme-font-btn" data-font="'Orbitron',sans-serif" style="font-family:Orbitron,sans-serif">Aa</button>
-      <button class="theme-font-btn" data-font="'Press Start 2P',monospace" style="font-family:'Press Start 2P',monospace">Aa</button>
-    </div>
+<!-- REQUEST -->
+<div class="req-overlay" id="reqOv">
+  <div class="req-card">
+    <button class="req-card-x" onclick="closeReq()">✕</button>
+    <h3 data-i18n="req_title">Попросить чит / визуал</h3>
+    <div class="sub" data-i18n="req_sub">Опиши, что хочешь увидеть на сайте</div>
+    <label class="reg-label" data-i18n="req_nickname">Ник</label>
+    <input class="reg-input" id="reqUsername" type="text" maxlength="20" placeholder="твой ник">
+    <label class="reg-label" data-i18n="req_what">Что добавить</label>
+    <input class="reg-input" id="reqText" type="text" maxlength="280" placeholder="название или ссылка">
+    <div class="reg-error" id="reqError"></div>
+    <button class="reg-submit" onclick="submitReq()" data-i18n="req_submit">Отправить</button>
   </div>
 </div>
-
 
 <script>
-  function openLightbox(src){
-    var lb = document.getElementById('lightbox');
-    var img = document.getElementById('lightboxImg');
-    img.src = src;
-    lb.classList.add('open');
+const B="https://github.com/migodi2/cheats-visuals/releases/download/v1.0/";
+const CL={cheat:"Чит",visual:"Визуал",mod:"Мод",respack:"Пак"};
+const CL_EN={cheat:"Cheat",visual:"Visual",mod:"Mod",respack:"Pack"};
+let curLang='ru';
+const D=[
+{n:"Zenith Client",v:"1.21.4",f:"zenith-fix.jar",c:"cheat",d:"Мощный чит-клиент с большим набором функций для PvP."},
+{n:"System DLC",v:"1.21.4",f:"system-client-1.0.0.jar",c:"cheat",d:"Профессиональный клиент с продвинутыми возможностями."},
+{n:"Delta Client",v:"1.21.4",f:"delta-client-1.0.0.2.jar",c:"cheat",d:"Лёгкий и быстрый клиент для комфортной игры."},
+{n:"Expensive Client",v:"1.21.11",f:"Expensive-cracked.jar",c:"cheat",d:"Премиум чит с эксклюзивными функциями."},
+{n:"Monoton Client",v:"1.16.5",f:"Monoton-cracked.rar",c:"cheat",d:"Классический клиент для старых версий."},
+{n:"Monoware Client",v:"1.21.4",f:"monoware.jar",c:"cheat",d:"Современный минималистичный чит-клиент."},
+{n:"Nuclear Client",v:"1.21.4",f:"nuclear.jar",c:"cheat",d:"Мощнейший чит для доминирования на серверах."},
+{n:"Catlavan Client",v:"1.16.5",f:"Catlavan.zip",c:"cheat",d:"Уникальный клиент с особенным стилем."},
+{n:"Wild Client",v:"1.21.4",f:"wild-v1.1.jar",c:"cheat",d:"Дикий набор функций для настоящих PvP-игроков."},
+{n:"Pouch Client",v:"1.21.4",f:"punch-1.0.0.jar",c:"cheat",d:"Клиент для быстрых действий в бою."},
+{n:"Liminar Client",v:"1.21.4",f:"LiminarCrack.jar",c:"cheat",d:"Элегантный клиент с плавными анимациями."},
+{n:"Wexside Client",v:"1.21.11",f:"wexside-client.jar",c:"cheat",d:"Мощный чит-клиент с продвинутыми функциями для PvP."},
+{n:"NightVisuals",v:"1.16.5",f:"NightVisual.rar",c:"visual",d:"Ночная тема для комфортной игры в темноте."},
+{n:"Destra Visuals",v:"1.21.4",f:"destravisuals-cracked.jar",c:"visual",d:"Красивые визуальные эффекты для украшения игры."},
+{n:"PulseVisuals",v:"1.21.4",f:"pulse-1.1.2.jar",c:"visual",d:"Пульсирующие визуалы с динамическими эффектами."},
+{n:"Pulse Visuals Pro",v:"1.21.11",f:"pulse-1.0-SNAPSHOT.jar",c:"visual",d:"Про-версия с расширенными настройками."},
+{n:"Really Visuals",v:"1.16.5",f:"reallyvisuals-1.0.0.2.jar",c:"visual",d:"Реалистичные визуальные улучшения."},
+{n:"Fabric API",v:"1.21.4",f:"fabric-api-0.119.4-1.21.4.jar",c:"mod",d:"Основной API для работы модов на Fabric."},
+{n:"Fabric API",v:"1.21.11",f:"fabric-api-0.141.4+1.21.11.jar",c:"mod",d:"Последняя версия Fabric API."},
+{n:"Sodium Fabric",v:"1.21.4",f:"sodium-fabric-0.6.13+mc1.21.4.jar",c:"mod",d:"Значительное улучшение FPS в Minecraft."},
+{n:"Sodium Fabric",v:"1.21.11",f:"sodium-fabric-0.8.12-mc1.21.11.jar",c:"mod",d:"Обновлённый Sodium для новых версий."},
+{n:"PvP Resource Pack",v:"1.16.5+",f:"CTPAXAHET.zip",c:"respack",d:"Пак для PvP с улучшенными текстурами.",img:"packs/photo_2026-08-13_14-58-55.jpg"},
+{n:"PvP Resource Pack 2",v:"1.16.5+",f:"xWindaLinux.zip",c:"respack",d:"Вторая версия PvP пака.",img:"packs/photo_2026-08-13_16-03-35.jpg"},
+{n:"PvP Resource Pack 3",v:"1.16.5+",f:"xDroppeWinda.zip",c:"respack",d:"Третья версия с новыми текстурами.",img:"packs/photo_2026-08-13_16-08-59.jpg"},
+{n:"PvP Resource Pack 4",v:"1.16.5+",f:"resiurcepack1.zip",c:"respack",d:"Четвёртая версия пака.",img:"packs/photo_2026-08-15_12-10-43.jpg"},
+{n:"PvP Resource Pack 5",v:"1.16.5+",f:"Resourcepack9.zip",c:"respack",d:"Пятая версия с обновлённым дизайном.",img:"packs/photo_2026-08-15_12-10-51.jpg"},
+{n:"PvP Resource Pack 6",v:"1.16.5+",f:"Resourcepack20.rar",c:"respack",d:"Шестая версия пака.",img:"packs/photo_2026-08-15_12-11-17.jpg"},
+{n:"PvP Resource Pack 7",v:"1.16.5+",f:"Resource.Pack10.zip",c:"respack",d:"Минималистичный пак для PvP.",img:"packs/pvp-preview-7.jpg"},
+{n:"PvP Resource Pack 8",v:"1.16.5+",f:"Resource.Pack2.zip",c:"respack",d:"Финальная версия PvP пака.",img:"packs/pvp-preview-8.jpg"}
+];
+
+// INTRO
+!function(){if(sessionStorage.getItem('nointro')==='1'){sessionStorage.removeItem('nointro');document.getElementById('intro').classList.add('out');document.querySelectorAll('.hero-badge,.hero h1,.hero p,.hero-btns,nav').forEach(el=>{el.style.animation='none';el.style.opacity='1';el.style.transform='none'});return}const c=document.getElementById('ic'),x=c.getContext('2d');let W,H,ps=[];function rs(){W=c.width=innerWidth;H=c.height=innerHeight}rs();addEventListener('resize',rs);for(let i=0;i<45;i++)ps.push({x:Math.random()*2e3,y:Math.random()*1200,s:Math.random()*1.8+.3,v:Math.random()*.4+.06,p:Math.random()*6.28});let t=0;!function draw(){if(document.getElementById('intro').classList.contains('out'))return;x.clearRect(0,0,W,H);t+=.018;ps.forEach(p=>{p.y-=p.v;if(p.y<-10){p.y=H+10;p.x=Math.random()*W}x.fillStyle=`rgba(130,130,200,${.15+Math.sin(t+p.p)*.1})`;x.beginPath();x.arc(p.x,p.y,p.s,0,6.28);x.fill()});requestAnimationFrame(draw)}();setTimeout(()=>document.getElementById('intro').classList.add('out'),3800)}();
+
+// BG PARTICLES
+!function(){const c=document.getElementById('bgP'),x=c.getContext('2d');let W,H,ps=[];function rs(){W=c.width=innerWidth;H=c.height=innerHeight}rs();addEventListener('resize',rs);for(let i=0;i<30;i++)ps.push({x:Math.random()*2e3,y:Math.random()*1200,s:Math.random()*1+.2,v:Math.random()*.1+.015,p:Math.random()*6.28});!function draw(){x.clearRect(0,0,W,H);ps.forEach(p=>{p.y-=p.v;if(p.y<-10){p.y=H+10;p.x=Math.random()*W}x.fillStyle=`rgba(124,106,255,${.08+Math.sin(Date.now()/3e3+p.p)*.04})`;x.beginPath();x.arc(p.x,p.y,p.s,0,6.28);x.fill()});requestAnimationFrame(draw)}()}();
+
+
+
+// CARDS
+const grid=document.getElementById('grid');
+let currentFilter='cheat';
+let isAnimating=false;
+
+function makeCard(c,i,startX,startY,startRot,startScale){
+  const el=document.createElement('div');
+  el.className='card';
+  const hasImg=c.img;
+  el.innerHTML=`
+    <div class="card-inner">
+      <div class="card-shine"></div>
+      ${hasImg?`<div class="card-img"><img class="card-img-inner" src="${c.img}" alt="${c.n}" loading="lazy"></div>`:''}
+      <div class="card-body">
+        <span class="card-tag tag-${c.c}">${curLang==='en'?CL_EN[c.c]:CL[c.c]}</span>
+        <div class="card-name">${c.n}</div>
+        <div class="card-ver">${c.v}</div>
+      </div>
+    </div>`;
+  el.onclick=()=>openM(D.indexOf(c));
+  el.addEventListener('mouseleave',()=>{
+    const inner=el.querySelector('.card-inner');
+    inner.style.transition='transform .5s cubic-bezier(.03,.98,.52,.99),box-shadow .5s';
+    inner.style.transform='';
+    inner.style.boxShadow='';
+  });
+  
+  if(startX!==undefined){
+    el.style.opacity='0';
+    el.style.transform=`translate(${startX}px,${startY}px) rotate(${startRot||0}deg) scale(${startScale||.7})`;
+    el.style.filter='blur(4px)';
+  }else{
+    el.style.opacity='0';
+    el.style.transform='translateY(40px) scale(.9)';
   }
-  document.getElementById('lightboxClose').addEventListener('click', function(){
-    document.getElementById('lightbox').classList.remove('open');
+  
+  const delay=i*50;
+  setTimeout(()=>{
+    el.style.transition=`opacity .4s cubic-bezier(.23,1,.32,1) ${delay}ms,transform .45s cubic-bezier(.23,1,.32,1) ${delay}ms,filter .4s ease ${delay}ms`;
+    el.style.opacity='1';
+    el.style.transform='translate(0,0) rotate(0) scale(1)';
+    el.style.filter='blur(0)';
+  },30);
+  
+  setTimeout(()=>{
+    el.style.transition='opacity .3s,transform .3s';
+  },30+delay+550);
+  
+  return el;
+}
+
+function getFlyParams(i,total,dir){
+  const cols=Math.min(3,total);
+  const rows=Math.ceil(total/3);
+  const col=i%3;
+  const row=Math.floor(i/3);
+  const cx=(col-(cols-1)/2);
+  const cy=(row-(rows-1)/2);
+  const maxOff=Math.max(cols,rows)*0.5;
+  return{
+    x:cx*120*dir,
+    y:cy*80*dir + (dir<0 ? -40 : 30),
+    rot:cx*4*dir,
+    scale:dir<0 ? 0.6 : 0.7
+  };
+}
+
+function render(f='cheat',animate=true){
+  if(isAnimating)return;
+  if(f===currentFilter&&grid.children.length>0)return;
+  currentFilter=f;
+  
+  if(animate&&grid.children.length>0){
+    isAnimating=true;
+    const old=[...grid.children];
+    const total=old.length;
+    
+    old.forEach((el,i)=>{
+      const p=getFlyParams(i,total,-1);
+      const delay=i*30;
+      el.style.transition=`opacity .25s ease ${delay}ms,transform .35s cubic-bezier(.4,0,.2,1) ${delay}ms`;
+      el.style.opacity='0';
+      el.style.transform=`translate(${p.x}px,${p.y}px) rotate(${p.rot}deg) scale(${p.scale})`;
+      el.style.filter='blur(4px)';
+      el.querySelector('.card-inner').style.transition=`transform .35s cubic-bezier(.4,0,.2,1) ${delay}ms`;
+      el.querySelector('.card-inner').style.transform='rotateX(8deg) scale(0.95)';
+    });
+    
+    setTimeout(()=>{
+      grid.innerHTML='';
+      const ls=f==='all'?D:D.filter(c=>c.c===f);
+      const newTotal=ls.length;
+      ls.forEach((c,i)=>{
+        const p=getFlyParams(i,newTotal,1);
+        grid.appendChild(makeCard(c,i,p.x,p.y,p.rot,p.scale));
+      });
+      isAnimating=false;
+    },total*30+380);
+  }else{
+    grid.innerHTML='';
+    const ls=f==='all'?D:D.filter(c=>c.c===f);
+    ls.forEach((c,i)=>{
+      const p=getFlyParams(i,ls.length,1);
+      grid.appendChild(makeCard(c,i,p.x,p.y,p.rot,p.scale));
+    });
+  }
+}
+render('cheat');
+
+// FILTERS
+document.querySelectorAll('.fbtn').forEach(b=>{
+  b.onclick=(e)=>{
+    if(b.classList.contains('on'))return;
+    document.querySelectorAll('.fbtn').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    const r=document.createElement('span');
+    r.className='filter-ripple';
+    const rect=b.getBoundingClientRect();
+    r.style.left=(e.clientX-rect.left-40)+'px';
+    r.style.top=(e.clientY-rect.top-40)+'px';
+    b.appendChild(r);
+    setTimeout(()=>r.remove(),600);
+    render(b.dataset.f);
+  }
+});
+
+// MODAL
+function openM(i){
+  const c=D[i];
+  document.getElementById('mT').textContent=c.n;
+  document.getElementById('mD').textContent=c.d;
+  document.getElementById('mV').textContent=c.v;
+  document.getElementById('mC').textContent=curLang==='en'?CL_EN[c.c]:CL[c.c];
+  document.getElementById('mDl').href=B+c.f;
+  const img=document.getElementById('mI');
+  if(c.img){
+    img.innerHTML=`<img src="${c.img}" alt="${c.n}" style="width:100%;height:100%;object-fit:cover">`;
+    img.style.display='block';
+  }else{
+    img.innerHTML='';
+    img.style.display='none';
+  }
+  document.getElementById('ov').classList.add('on');
+}
+function closeM(){document.getElementById('ov').classList.remove('on')}
+document.getElementById('ov').onclick=e=>{if(e.target===e.currentTarget)closeM()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM()});
+
+// REVEAL
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+// NAV (exclude links)
+document.querySelectorAll('.nav-liquid').forEach(a=>{
+  if(a.tagName==='A')return;
+  a.addEventListener('click',e=>{
+    if(!a.getAttribute('onclick'))e.preventDefault();
   });
-  document.getElementById('lightbox').addEventListener('click', function(e){
-    if(e.target === this) this.classList.remove('open');
-  });
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape'){
-      document.getElementById('lightbox').classList.remove('open');
+});
+
+// STAT COUNTER
+const sObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const el=e.target,t=+el.dataset.c;let cur=0;const step=Math.max(1,Math.floor(t/30));const iv=setInterval(()=>{cur+=step;if(cur>=t){cur=t;clearInterval(iv)}el.textContent=cur},35);sObs.unobserve(el)}})},{threshold:.5});
+document.querySelectorAll('.stat-n').forEach(el=>sObs.observe(el));
+
+// CARD 3D TILT
+let activeCard=null;
+let tiltX=0,tiltY=0;
+document.addEventListener('mousemove',e=>{
+  document.querySelectorAll('.card').forEach(card=>{
+    const r=card.getBoundingClientRect();
+    const x=e.clientX-r.left;
+    const y=e.clientY-r.top;
+    const px=(x/r.width)*100;
+    const py=(y/r.height)*100;
+    card.style.setProperty('--mx',px+'%');
+    card.style.setProperty('--my',py+'%');
+    const inner=card.querySelector('.card-inner');
+    if(x>=0&&x<=r.width&&y>=0&&y<=r.height){
+      const rotateX=((y/r.height)-.5)*-20;
+      const rotateY=((x/r.width)-.5)*20;
+      const depth=Math.min(Math.abs(rotateX),Math.abs(rotateY))/20;
+      inner.style.transition='transform .08s ease-out,box-shadow .3s';
+      inner.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(${15+depth*8}px) scale(1.03)`;
+      inner.style.boxShadow=`0 ${20+depth*15}px ${40+depth*20}px rgba(0,0,0,${.4+depth*.1}),0 0 ${30+depth*20}px rgba(124,106,255,${.04+depth*.04})`;
+      if(activeCard!==card){
+        if(activeCard){
+          const prev=activeCard.querySelector('.card-inner');
+          prev.style.transition='transform .5s cubic-bezier(.03,.98,.52,.99),box-shadow .5s';
+          prev.style.transform='';
+          prev.style.boxShadow='';
+        }
+        activeCard=card;
+      }
+    }else if(card===activeCard){
+      inner.style.transition='transform .5s cubic-bezier(.03,.98,.52,.99),box-shadow .5s';
+      inner.style.transform='';
+      inner.style.boxShadow='';
+      activeCard=null;
     }
   });
+});
+document.addEventListener('mouseleave',()=>{
+  if(activeCard){
+    const inner=activeCard.querySelector('.card-inner');
+    inner.style.transition='transform .5s cubic-bezier(.03,.98,.52,.99),box-shadow .5s';
+    inner.style.transform='';
+    inner.style.boxShadow='';
+    activeCard=null;
+  }
+});
+
+/* ============================
+   LANGUAGE SYSTEM
+   ============================ */
+const T={
+  ru:{
+    guest:"Гость",register:"Регистрация",reg_sub:"Придумай логин — без пароля и почты",
+    reg_login:"Логин",reg_bot_check:"Подтверди, что ты не бот",reg_submit:"Зарегаться",
+    reg_ph:"твой ник",reg_answer_ph:"ответ",change_nick:"Сменить ник",logout:"Выйти",
+    upload_photo:"Загрузить фото",stat_visits:"Визитов",stat_days:"Дней",stat_last:"Последний",
+    info_created:"Создан",info_last_visit:"Последний заход",
+    req_title:"Попросить чит / визуал",req_sub:"Опиши, что хочешь увидеть на сайте",
+    req_nickname:"Ник",req_what:"Что добавить",req_submit:"Отправить",
+    hero_badge:"Обновлено",hero_h1:"Лучшие моды<br>для <span class='g'>Minecraft</span>",
+    hero_p:"Читы, визуалы, модификации и ресурспаки. Скачивай бесплатно и устанавливай за секунду.",
+    hero_btn1:"Каталог",hero_btn2:"Подробнее",catalog_h2:"Каталог",
+    catalog_p:"28 модов, читов и паков для разных версий Minecraft",
+    stat_mods:"Модов",stat_cats:"Категории",stat_vers:"Версии MC",stat_free:"Бесплатно",
+    cta_h2:"Готов к игре?",cta_p:"Скачивай моды и начинай прямо сейчас",cta_btn:"Выбрать мод",
+    profile:"профиль",login:"войти",dl:"Скачать",close:"Закрыть",
+    tab_cheats:"Читы",tab_visuals:"Визуалы",tab_mods:"Моды",tab_respacks:"Ресурспаки"
+  },
+  en:{
+    guest:"Guest",register:"Registration",reg_sub:"Pick a login — no password, no email",
+    reg_login:"Login",reg_bot_check:"Prove you are not a bot",reg_submit:"Register",
+    reg_ph:"your nickname",reg_answer_ph:"answer",change_nick:"Change nick",logout:"Log out",
+    upload_photo:"Upload photo",stat_visits:"Visits",stat_days:"Days",stat_last:"Last seen",
+    info_created:"Created",info_last_visit:"Last visit",
+    req_title:"Request cheat / visual",req_sub:"Describe what you want to see on the site",
+    req_nickname:"Nickname",req_what:"What to add",req_submit:"Send",
+    hero_badge:"Updated",hero_h1:"Best mods<br>for <span class='g'>Minecraft</span>",
+    hero_p:"Cheats, visuals, modifications and resource packs. Download for free and install in seconds.",
+    hero_btn1:"Catalog",hero_btn2:"Learn more",catalog_h2:"Catalog",
+    catalog_p:"28 mods, cheats and packs for different Minecraft versions",
+    stat_mods:"Mods",stat_cats:"Categories",stat_vers:"MC Versions",stat_free:"Free",
+    cta_h2:"Ready to play?",cta_p:"Download mods and start right now",cta_btn:"Choose mod",
+    profile:"profile",login:"login",dl:"Download",close:"Close",
+    tab_cheats:"Cheats",tab_visuals:"Visuals",tab_mods:"Mods",tab_respacks:"Resource Packs"
+  }
+};
+function t(k){return(T[curLang]&&T[curLang][k])||(T.ru[k]||'')}
+
+function applyLang(lang){
+  curLang=lang;
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    const v=t(k);
+    if(v) el.innerHTML=v;
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const k=el.getAttribute('data-i18n-ph');
+    const v=t(k);
+    if(v) el.placeholder=v;
+  });
+  const acc=getAcc();
+  if(acc){
+    document.getElementById('navProfileName').textContent=t('profile');
+  }else{
+    document.getElementById('navProfileName').textContent=t('login');
+  }
+  document.getElementById('langBtn').textContent=lang==='ru'?'RU / EN':'EN / RU';
+  render(currentFilter,false);
+}
+
+function toggleLang(){
+  applyLang(curLang==='ru'?'en':'ru');
+}
+
+/* ============================
+   PROFILE SYSTEM
+   ============================ */
+const ACC_KEY='migodi_acc';
+const SEEN_KEY='migodi_seen';
+let challengeAns=null;
+
+function getAcc(){try{return JSON.parse(localStorage.getItem(ACC_KEY))||null}catch(e){return null}}
+function saveAcc(a){localStorage.setItem(ACC_KEY,JSON.stringify(a))}
+function fmtDate(ts){if(!ts)return'—';const d=new Date(ts);return String(d.getDate()).padStart(2,'0')+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+d.getFullYear()}
+function daysBetween(a,b){return Math.floor(Math.abs(b-a)/86400000)}
+
+function renderProfile(){
+  const acc=getAcc();
+  const nameEl=document.getElementById('profName');
+  const uidEl=document.getElementById('profUid');
+  const avatarText=document.getElementById('profAvatarText');
+  const avatarEl=document.getElementById('profAvatar');
+  const navBtn=document.querySelector('.nb-profile');
+
+  if(!acc){
+    nameEl.textContent=t('guest');
+    uidEl.textContent='';
+    avatarText.textContent='?';
+    const img=avatarEl.querySelector('img');
+    if(img)img.remove();
+    navBtn.classList.remove('logged-in');
+    return;
+  }
+
+  nameEl.textContent=acc.username;
+  uidEl.textContent='UID #'+(acc.uid||1);
+  navBtn.classList.add('logged-in');
+
+  if(acc.avatar){
+    let img=avatarEl.querySelector('img');
+    if(!img){img=document.createElement('img');avatarEl.insertBefore(img,avatarText)}
+    img.src=acc.avatar;
+    avatarText.textContent='';
+  }else{
+    const img=avatarEl.querySelector('img');
+    if(img)img.remove();
+    avatarText.textContent=acc.username.slice(0,2).toUpperCase();
+  }
+
+  const now=Date.now();
+  document.getElementById('profVisits').textContent=acc.visits||1;
+  document.getElementById('profDays').textContent=daysBetween(acc.created,now);
+  document.getElementById('profLastSeen').textContent=fmtDate(acc.lastVisit);
+  document.getElementById('profCreated').textContent=fmtDate(acc.created);
+  document.getElementById('profLastVisit').textContent=fmtDate(acc.lastVisit);
+}
+
+function uploadAvatar(input){
+  const file=input.files&&input.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(){
+    const img=new Image();
+    img.onload=function(){
+      const sz=256;
+      const canvas=document.createElement('canvas');
+      canvas.width=sz;canvas.height=sz;
+      const ctx=canvas.getContext('2d');
+      const side=Math.min(img.width,img.height);
+      ctx.drawImage(img,(img.width-side)/2,(img.height-side)/2,side,side,0,0,sz,sz);
+      const acc=getAcc();
+      if(!acc)return;
+      acc.avatar=canvas.toDataURL('image/jpeg',0.85);
+      saveAcc(acc);
+      renderProfile();
+      input.value='';
+    };
+    img.src=reader.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function openProfile(){
+  const acc=getAcc();
+  if(!acc){openReg(false);return}
+  document.getElementById('profOv').classList.add('on');
+}
+function closeProfile(){document.getElementById('profOv').classList.remove('on')}
+document.getElementById('profOv').onclick=e=>{if(e.target===e.currentTarget)closeProfile()};
+
+function logout(){
+  localStorage.removeItem(ACC_KEY);
+  localStorage.removeItem(SEEN_KEY);
+  closeProfile();
+  renderProfile();
+  openReg(false);
+}
+
+// REGISTRATION
+function newChallenge(){
+  const a=Math.floor(Math.random()*9)+1;
+  const b=Math.floor(Math.random()*9)+1;
+  let q,ans;
+  if(Math.random()<0.5){q=a+' + '+b;ans=a+b}
+  else{if(a<b){const tmp=a;a=b;b=tmp}q=a+' − '+b;ans=a-b}
+  challengeAns=ans;
+  document.getElementById('regChallengeQ').textContent=q+' = ?';
+  document.getElementById('regAnswer').value='';
+}
+
+function openReg(isEdit){
+  document.getElementById('regError').textContent='';
+  document.getElementById('regError').classList.remove('show');
+  newChallenge();
+  if(isEdit){
+    const acc=getAcc();
+    document.getElementById('regUsername').value=acc?acc.username:'';
+    document.getElementById('regTitle').textContent=t('change_nick');
+    document.getElementById('regSubmit').textContent=curLang==='ru'?'Сохранить':'Save';
+  }else{
+    document.getElementById('regUsername').value='';
+    document.getElementById('regTitle').textContent=t('register');
+    document.getElementById('regSubmit').textContent=t('reg_submit');
+  }
+  document.getElementById('regOv').classList.add('on');
+  setTimeout(()=>document.getElementById('regUsername').focus(),100);
+}
+function closeReg(){document.getElementById('regOv').classList.remove('on')}
+document.getElementById('regOv').onclick=e=>{if(e.target===e.currentTarget)closeReg()};
+
+function submitReg(){
+  const name=document.getElementById('regUsername').value.trim();
+  const ans=document.getElementById('regAnswer').value.trim();
+  const errEl=document.getElementById('regError');
+
+  if(name.length<3){errEl.textContent=curLang==='ru'?'Логин минимум 3 символа':'Min 3 chars';errEl.classList.add('show');return}
+  if(name.length>20){errEl.textContent=curLang==='ru'?'Максимум 20 символов':'Max 20 chars';errEl.classList.add('show');return}
+  if(!/^[a-zA-Zа-яА-ЯёЁ0-9_]+$/.test(name)){errEl.textContent=curLang==='ru'?'Только буквы, цифры и _':'Letters, numbers, _ only';errEl.classList.add('show');return}
+  if(ans===''||parseInt(ans,10)!==challengeAns){errEl.textContent=curLang==='ru'?'Неверный ответ':'Wrong answer';errEl.classList.add('show');return}
+
+  let acc=getAcc();
+  const isNew=!acc;
+  if(!acc)acc={created:Date.now(),visits:0,avatar:null,lastVisit:Date.now(),uid:Math.floor(Math.random()*900)+100};
+  acc.username=name;
+  if(isNew){acc.created=Date.now();acc.visits=1;acc.lastVisit=Date.now()}
+  else{acc.lastVisit=Date.now()}
+  saveAcc(acc);
+  localStorage.setItem(SEEN_KEY,'1');
+  closeReg();
+  renderProfile();
+  applyLang(curLang);
+}
+
+document.getElementById('regUsername').onkeydown=e=>{if(e.key==='Enter')submitReg()};
+document.getElementById('regAnswer').onkeydown=e=>{if(e.key==='Enter')submitReg()};
+
+// INIT PROFILE
+(function(){
+  const acc=getAcc();
+  if(acc){
+    acc.visits=(acc.visits||0)+1;
+    acc.lastVisit=Date.now();
+    saveAcc(acc);
+  }
+  renderProfile();
+  if(!acc&&!localStorage.getItem(SEEN_KEY)){
+    setTimeout(()=>openReg(false),4500);
+  }
+})();
+
+// ESC CLOSE
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    closeProfile();closeReg();closeReq();closeM();
+  }
+});
+
+// REQUEST MODAL
+function openReq(){document.getElementById('reqOv').classList.add('on')}
+function closeReq(){document.getElementById('reqOv').classList.remove('on')}
+document.getElementById('reqOv').onclick=e=>{if(e.target===e.currentTarget)closeReq()};
+
+function submitReq(){
+  const name=document.getElementById('reqUsername').value.trim()||'Гость';
+  const text=document.getElementById('reqText').value.trim();
+  const errEl=document.getElementById('reqError');
+  if(text.length<2){errEl.textContent=curLang==='ru'?'Опиши подробнее':'Be more specific';errEl.classList.add('show');return}
+  const acc=getAcc();
+  const uname=acc?acc.username:name;
+  window.open('https://t.me/Mig0di?text='+encodeURIComponent('Заявка от '+uname+': '+text),'_blank');
+  closeReq();
+  document.getElementById('reqText').value='';
+  errEl.textContent='';
+  errEl.classList.remove('show');
+}
+
+// LIQUID METAL BUTTON RIPPLE
+document.getElementById('liquidBtn').addEventListener('click',function(e){
+  const rect=this.getBoundingClientRect();
+  const x=e.clientX-rect.left;
+  const y=e.clientY-rect.top;
+  const ripple=document.createElement('span');
+  ripple.className='ripple';
+  ripple.style.left=x+'px';
+  ripple.style.top=y+'px';
+  this.appendChild(ripple);
+  setTimeout(()=>ripple.remove(),600);
+  window.location.href='#catalog';
+});
 </script>
-
-   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-   <script src="firebase-config.js?v=2"></script>
-   <script src="script.js?v=2"></script>
-</body></html>
-
-
+</body>
+</html>
