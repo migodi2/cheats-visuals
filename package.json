@@ -1,10 +1,26 @@
 {
-  "name": "functions",
-  "description": "Telegram notify on new request",
-  "engines": { "node": "18" },
-  "main": "index.js",
+  "name": "default-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "admin.js",
   "dependencies": {
-    "firebase-functions": "^4.9.0",
-    "firebase-admin": "^11.11.0"
-  }
+    "iconv-lite": "^0.7.3",
+    "safer-buffer": "^2.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/migodi2/cheats-visuals.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/migodi2/cheats-visuals/issues"
+  },
+  "homepage": "https://github.com/migodi2/cheats-visuals#readme"
 }

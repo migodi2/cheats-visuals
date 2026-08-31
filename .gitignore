@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Opencode (contains API keys - NEVER commit)
+opencode.json
+
+# Firebase config with secrets (use firebase-config.example.js)
+firebase-config.local.js

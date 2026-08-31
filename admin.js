@@ -1,16 +1,16 @@
 /* ============================================
    ADMIN PANEL: requests list + approve to cards
+   Uses Firebase callable functions for auth
    ============================================ */
 (function(){
-  var ADMIN_PASS = 'M1god1_S3cur3_2026!';            // смени на свой сложный пароль
-  var ADMIN_TOKEN = 'f9Kv2pLx_84QwZtY7mR3sA1'; // совпадает с токеном в firestore.rules — не показывай никому
-
   var db = null;
+  var functions = null;
   try {
     if(window.__firebaseConfig && window.__firebaseConfig.apiKey &&
        window.__firebaseConfig.apiKey.indexOf('ВСТАВЬ') === -1 && window.firebase){
       firebase.initializeApp(window.__firebaseConfig);
       db = firebase.firestore();
+      functions = firebase.functions();
     }
   } catch(e){ db = null; }
 
@@ -31,8 +31,27 @@
   }
 
   passBtn.addEventListener('click', function(){
-    if(passInput.value === ADMIN_PASS){ unlock(); }
-    else { gateErr.textContent = 'Неверный пароль'; }
+    var pass = passInput.value;
+    if(!pass){ gateErr.textContent = 'Введите пароль'; return; }
+    if(pass.length < 8){ gateErr.textContent = 'Минимум 8 символов'; return; }
+    if(!functions){ gateErr.textContent = 'Firebase не подключён'; return; }
+
+    var adminAuth = functions.httpsCallable('adminAuth');
+    adminAuth({ password: pass }).then(function(result){
+      if(result.data && result.data.ok && result.data.customToken){
+        // Sign in with custom token so Firestore rules recognize us as admin
+        return firebase.auth().signInWithCustomToken(result.data.customToken);
+      }
+      throw new Error('Auth failed');
+    }).then(function(){
+      unlock();
+    }).catch(function(err){
+      var msg = 'Неверный пароль';
+      if(err && err.code === 'resource-exhausted') msg = 'Слишком много попыток. Подождите.';
+      else if(err && err.code === 'failed-precondition') msg = 'Сервер не настроен';
+      else if(err && err.code === 'permission-denied') msg = 'Неверный пароль';
+      gateErr.textContent = msg;
+    });
   });
   passInput.addEventListener('keydown', function(e){ if(e.key === 'Enter') passBtn.click(); });
 
@@ -43,24 +62,16 @@
   }
 
   function loadRequests(){
-    if(!db){ reqList.innerHTML = '<div class="empty">Firebase не подключён (проверь firebase-config.js)</div>'; return; }
+    if(!db){ reqList.textContent = 'Firebase не подключён (проверь firebase-config.js)'; return; }
     var first = true;
     var seen = {};
-    function sendTgFallback(text){
-      try{
-        var t = window.__tg;
-        if(!t || !t.bot || t.bot.indexOf('ВСТАВЬ') !== -1 || !t.chat || t.chat.indexOf('ВСТАВЬ') !== -1) return;
-        var url = 'https://api.telegram.org/bot' + t.bot + '/sendMessage?chat_id=' + encodeURIComponent(t.chat) + '&text=' + encodeURIComponent(text);
-        fetch(url, {mode:'no-cors', keepalive:true}).catch(function(){});
-      }catch(e){}
-    }
     db.collection('requests').orderBy('ts','desc').onSnapshot(function(snap){
-      reqList.innerHTML = '';
-      if(snap.empty){ reqList.innerHTML = '<div class="empty">заявок пока нет</div>'; return; }
+      reqList.textContent = '';
+      if(snap.empty){ reqList.textContent = 'заявок пока нет'; return; }
       snap.forEach(function(d){
         var r = d.data();
         if(!first && !seen[d.id]){
-          sendTgFallback('🔔 Новая заявка (резерв)\nОт: ' + (r.name||'гость') + '\n' + (r.text||''));
+          // Telegram notifications handled by Cloud Functions trigger
         }
         seen[d.id] = true;
         var item = document.createElement('div');
@@ -87,7 +98,7 @@
       });
       first = false;
     }, function(){
-      reqList.innerHTML = '<div class="empty">нет доступа к requests</div>';
+      reqList.textContent = 'нет доступа к requests';
     });
   }
 
@@ -109,7 +120,7 @@
   });
 
   document.getElementById('cfSave').addEventListener('click', function(){
-    if(!db){ cfErr.textContent = 'Firebase не подключён'; return; }
+    if(!functions){ cfErr.textContent = 'Firebase не подключён'; return; }
     var cat = document.getElementById('cfCat').value;
     var ver = document.getElementById('cfVer').value.trim();
     var title = document.getElementById('cfTitle').value.trim();
@@ -119,22 +130,19 @@
     if(!title){ cfErr.textContent = 'Укажи название'; return; }
     if(!link){ cfErr.textContent = 'Укажи ссылку на скачивание'; return; }
 
-    db.collection('cards').add({
-      cat: cat,
-      ver: ver,
-      title: title,
-      link: link,
-      tg: tg,
-      install: install,
-      token: ADMIN_TOKEN,
-      ts: Date.now()
-    }).then(function(){
-      if(currentReqId){
-        db.collection('requests').doc(currentReqId).delete().catch(function(){});
+    var createCard = functions.httpsCallable('createCard');
+    createCard({cat: cat, ver: ver, title: title, link: link, tg: tg, install: install})
+    .then(function(result){
+      if(result.data && result.data.ok){
+        if(currentReqId){
+          db.collection('requests').doc(currentReqId).delete().catch(function(){});
+        }
+        cardForm.hidden = true; currentReqId = null;
+      } else {
+        cfErr.textContent = 'Ошибка: неизвестная';
       }
-      cardForm.hidden = true; currentReqId = null;
     }).catch(function(e){
-      cfErr.textContent = 'Ошибка записи: ' + (e && e.message ? e.message : e);
+      cfErr.textContent = 'Ошибка: ' + (e && e.message ? e.message : e);
     });
   });
 })();

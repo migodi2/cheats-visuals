@@ -617,6 +617,8 @@
     fileInput.addEventListener('change', function(){
       var file = fileInput.files && fileInput.files[0];
       if(!file) return;
+      if(file.size > 2*1024*1024){ fileInput.value = ''; return; }
+      if(!file.type.startsWith('image/')){ fileInput.value = ''; return; }
       var reader = new FileReader();
       reader.onload = function(){
         var img = new Image();
@@ -703,23 +705,16 @@
        window.__firebaseConfig.apiKey.indexOf('ВСТАВЬ') === -1 && window.firebase){
       firebase.initializeApp(window.__firebaseConfig);
       db = firebase.firestore();
+      // Anonymous auth for counter writes and comments
+      if(!firebase.auth().currentUser){
+        firebase.auth().signInAnonymously().catch(function(){});
+      }
     }
   } catch(e){ db = null; }
 
   function slug(el){
     var h = el.querySelector('h3');
     return (h ? h.textContent : 'card').trim().toLowerCase().replace(/[^a-z0-9а-я]+/gi,'_');
-  }
-
-  function sendTg(text){
-    try {
-      var t = window.__tg;
-      if(!t || !t.bot || t.bot.indexOf('ВСТАВЬ') !== -1 || !t.chat || t.chat.indexOf('ВСТАВЬ') !== -1) return;
-      var url = 'https://api.telegram.org/bot' + t.bot +
-        '/sendMessage?chat_id=' + encodeURIComponent(t.chat) +
-        '&text=' + encodeURIComponent(text);
-      fetch(url, {mode:'no-cors', keepalive:true}).catch(function(){});
-    } catch(e){}
   }
 
   var tgSvg = '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M21.05 2.93 2.6 10.2c-1.24.5-1.23 1.19-.23 1.5l4.72 1.47 1.83 5.6c.22.6.11.84.75.84.5 0 .72-.23 1-.5l2.4-2.33 4.79 3.54c.88.49 1.52.24 1.74-.82L22.9 4.3c.32-1.3-.5-1.88-1.85-1.37Zm-3.1 3.6L9.2 13.3l-.35 3.63-1.7-5.2 10.8-6.8c.5-.3.96-.14.58.19Z"></path></svg>';
@@ -740,10 +735,10 @@
     dl.className = 'dl-btn';
     dl.setAttribute('download', '');
     dl.setAttribute('data-i18n', 'dl');
-    if(c.link) dl.href = c.link;
+    if(c.link && c.link.startsWith('https://')) dl.href = c.link;
     footer.appendChild(pill);
     footer.appendChild(dl);
-    if(c.tg){
+    if(c.tg && c.tg.startsWith('https://')){
       var tg = document.createElement('a');
       tg.className = 'tg-btn';
       tg.href = c.tg;
@@ -836,8 +831,11 @@
       dl.addEventListener('click', function(){
         if(!db) return;
         var ref = db.collection('counters').doc(id);
-        ref.get().then(function(d){
-          ref.set({ count: (d.exists ? (d.data().count||0) : 0) + 1 }, { merge: true });
+        db.runTransaction(function(t){
+          return t.get(ref).then(function(snap){
+            var current = (snap.exists && snap.data().count) || 0;
+            t.set(ref, { count: current + 1 }, { merge: true });
+          });
         }).catch(function(){});
       });
     }
@@ -853,7 +851,7 @@
         var c = d.data();
         var grid = document.getElementById((c.cat || 'cheats') + 'Grid');
         if(!grid) return;
-        if(grid.querySelector('[data-cardid="' + d.id + '"]')) return;
+        if(grid.querySelector('[data-cardid][data-cardid="' + d.id.replace(/"/g, '\\"') + '"]')) return;
         var card = buildCard(c, d.id);
         grid.appendChild(card);
         enhanceCard(card);
@@ -892,7 +890,6 @@
       db.collection('requests').add({ name: name.slice(0,24), text: text.slice(0,280), ts: Date.now() })
         .then(function(){
           closeReq(); reqText.value='';
-          sendTg('🔔 Новая заявка на сайте\nОт: ' + name + '\n' + text);
         })
         .catch(function(){ if(reqError) reqError.textContent='Не удалось отправить'; if(reqError) reqError.classList.add('show'); });
     } else {

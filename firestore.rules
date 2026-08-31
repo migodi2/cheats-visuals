@@ -20,7 +20,16 @@ service cloud.firestore {
     match /meta/auditLog/entries/{entryId} {
       allow read: if true;
       allow create: if isAuthed()
-        && request.resource.data.keys().hasOnly(['action','target','by','ts','fp']);
+        && request.resource.data.keys().hasOnly(['action','target','by','ts','fp'])
+        && request.resource.data.action is string
+        && request.resource.data.action.size() <= 40
+        && request.resource.data.target is string
+        && request.resource.data.target.size() <= 100
+        && request.resource.data.by is string
+        && request.resource.data.by.size() <= 24
+        && request.resource.data.ts is number
+        && request.resource.data.fp is string
+        && request.resource.data.fp.size() <= 100;
       allow update, delete: if false;
     }
 
@@ -29,39 +38,53 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    // --- Публичные данные сайта (комменты, счётчики, запросы) ---
-    match /comments/{cardId}/items/{cid} {
+    match /counters/{counterId} {
       allow read: if true;
-      allow create: if request.resource.data.keys().hasOnly(['name','text','ts'])
-        && request.resource.data.name is string
-        && request.resource.data.text is string
-        && request.resource.data.name.size() <= 24
-        && request.resource.data.text.size() <= 280;
-      allow update, delete: if false;
+      allow create, update: if isAuthed()
+        && exists(/databases/$(database)/documents/cards/$(counterId))
+        && request.resource.data.size() == 1
+        && request.resource.data.keys().hasOnly(['count'])
+        && request.resource.data.count is number
+        && request.resource.data.count >= 0
+        && request.resource.data.count <= 1000000000;
+      allow delete: if false;
     }
 
-    match /counters/{cardId} {
+    match /comments/{cardId}/items/{cid} {
       allow read: if true;
-      allow write: if true;
+      allow create: if isAuthed()
+        && request.resource.data.keys().hasOnly(['name','text','ts'])
+        && request.resource.data.name is string
+        && request.resource.data.text is string
+        && request.resource.data.ts is number
+        && request.resource.data.ts > 0
+        && request.resource.data.ts <= request.time.toMillis()
+        && request.resource.data.name.size() <= 24
+        && request.resource.data.text.size() <= 280;
+      allow update: if false;
+      allow delete: if isAdmin();
     }
 
     match /requests/{reqId} {
-      allow read: if true;
-      allow create: if request.resource.data.keys().hasOnly(['name','text','ts'])
+      allow read: if isAdmin();
+      allow create: if isAuthed()
+        && request.resource.data.keys().hasOnly(['name','text','ts'])
         && request.resource.data.name is string
         && request.resource.data.text is string
+        && request.resource.data.ts is number
+        && request.resource.data.ts > 0
+        && request.resource.data.ts <= request.time.toMillis()
         && request.resource.data.name.size() <= 24
         && request.resource.data.text.size() <= 280;
-      allow update: if true;
-      allow delete: if true;
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
     }
 
-    // --- Карточки, добавленные через админку (пишет только админ с токеном) ---
     match /cards/{cardId} {
       allow read: if true;
-      allow create: if request.resource.data.token == 'f9Kv2pLx_84QwZtY7mR3sA1';
-      allow update: if request.resource.data.token == 'f9Kv2pLx_84QwZtY7mR3sA1';
-      allow delete: if resource.data.token == 'f9Kv2pLx_84QwZtY7mR3sA1';
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
     }
   }
 }
